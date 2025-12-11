@@ -5,6 +5,7 @@ type ButtonProps = {
   onClick?: () => void;
   type?: "button" | "submit" | "reset";
   disabled?: boolean;
+  className?: string;
 };
 
 export default function Button({
@@ -12,9 +13,10 @@ export default function Button({
   onClick,
   type = "button",
   disabled = false,
+  className,
 }: ButtonProps) {
   return (
-    <div className="w-full text-center">
+    <div className={`w-full text-center ${className}`}>
       <button
         onClick={onClick}
         type={type}

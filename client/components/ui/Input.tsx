@@ -1,6 +1,7 @@
 "use client";
 
 import { titleCase } from "@/helper/utils";
+import { error } from "console";
 
 type InputProps = {
   title: string;
@@ -8,6 +9,7 @@ type InputProps = {
   value: string | number;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
+  error?: string;
 };
 
 export default function Input({
@@ -16,6 +18,7 @@ export default function Input({
   value,
   type = "text",
   placeholder,
+  error,
 }: InputProps) {
   return (
     <div className="grid grid-row-2 gap-1">
@@ -28,6 +31,7 @@ export default function Input({
         placeholder={placeholder}
         className="w-100 bg-zinc-800 rounded-lg py-1.5 px-2 text-white border border-white-600 text-md"
       />
+      {error && <p className="text-red-500 text-sm">{error}</p>}
     </div>
   );
 }
