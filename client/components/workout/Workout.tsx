@@ -19,7 +19,7 @@ const isSuperSet = (lift: Lift | SuperSet): lift is SuperSet => {
 export default async function Workout() {
   let workoutData;
   try {
-    const res = await fetch("http://localhost:3000/api/lifts", {
+    const res = await fetch("http://localhost:8081/api", {
       cache: "no-store", // so you always see fresh data in dev
     });
 
