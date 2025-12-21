@@ -28,6 +28,5 @@ wss.on("connection", (ws) => {
           client.send(`${message.payload.sender} sent: ${message.payload.msg}`);
       }
     });
-    // ws.send(`You sent: ${message}`);
   });
 });

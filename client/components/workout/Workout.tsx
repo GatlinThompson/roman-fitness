@@ -1,38 +1,73 @@
-import React from "react";
+"use client";
 
-type Lift = {
-  id: number;
-  name: string;
-  reps: string;
-  tempo: string;
-};
-
-type SuperSet = {
-  id: number;
-  superset: Lift[];
-};
+import { useEffect, useState } from "react";
+import { createClient } from "@/lib/supabase/client";
+import { Lift, SuperSet } from "@/types/lifts";
+import { getTodayWorkout } from "@/lib/supabase/utils/lifts";
 
 const isSuperSet = (lift: Lift | SuperSet): lift is SuperSet => {
   return (lift as SuperSet).superset !== undefined;
 };
 
-export default async function Workout() {
-  let workoutData;
-  try {
-    const res = await fetch("http://localhost:8081/api", {
-      cache: "no-store", // so you always see fresh data in dev
-    });
+export default function Workout() {
+  const [workout, setWorkout] = useState<Lift[]>([]);
 
-    if (!res.ok) {
-      throw new Error("Failed to fetch lifts");
+  const getWorkout = async () => {
+    const workout = await getTodayWorkout();
+
+    if (workout) {
+      setWorkout(workout);
     }
-    const data = await res.json();
-    console.info("Fetched lifts data:", data);
-    workoutData = data.workout;
-    console.log("Workout data:", workoutData);
-  } catch (error) {
-    console.error("Error fetching lifts:", error);
-  }
+  };
+
+  useEffect(() => {
+    //gets todays workout
+    getWorkout();
+
+    const supabase = createClient();
+
+    const channel = supabase.channel("workouts:changes");
+
+    channel
+      .on(
+        "postgres_changes",
+        { event: "INSERT", schema: "public", table: "workouts" },
+        (payload) => {
+          console.log(payload);
+        }
+      )
+      .subscribe();
+
+    channel
+      .on(
+        "postgres_changes",
+        { event: "INSERT", schema: "public", table: "workouts" },
+        (payload) => {
+          console.log(payload);
+        }
+      )
+      .subscribe();
+
+    channel
+      .on(
+        "postgres_changes",
+        { event: "UPDATE", schema: "public", table: "workouts" },
+        (payload) => {
+          console.log(payload);
+        }
+      )
+      .subscribe();
+
+    channel
+      .on(
+        "postgres_changes",
+        { event: "DELETE", schema: "public", table: "workouts" },
+        (payload) => {
+          console.log(payload);
+        }
+      )
+      .subscribe();
+  }, []);
 
   return (
     <>
@@ -45,7 +80,8 @@ export default async function Workout() {
           </tr>
         </thead>
         <tbody>
-          {workoutData.map((lift: Lift | SuperSet) => {
+          {workout.map((lift: Lift | SuperSet) => {
+            console.log(workout);
             if (isSuperSet(lift)) {
               return <SuperSetComponent key={lift.id} {...lift} />;
             } else {
@@ -66,7 +102,7 @@ function SuperSetComponent(superset: SuperSet) {
         <ul className="pt-3 pl-3">
           {superset.superset.map((lift) => (
             <li key={lift.id} className="ml-1">
-              {lift.name}
+              {lift.excercise}
             </li>
           ))}
         </ul>
@@ -94,10 +130,11 @@ function SuperSetComponent(superset: SuperSet) {
 }
 
 function LiftComponent(lift: Lift) {
+  console.log(lift);
   return (
     <tr>
       <td className="border p-1">
-        <h3 className="text-left">{lift.name}</h3>
+        <h3 className="text-left">{lift.excercise}</h3>
       </td>
       <td className="border p-1">
         <p>{lift.reps}</p>

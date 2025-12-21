@@ -6,6 +6,7 @@ import Input from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
 import Spinner from "@/components/ui/Spinner";
 import { useRouter } from "next/navigation";
+import { createClient } from "@/lib/supabase/client";
 
 export default function AdminLoginForm() {
   const [username, setUsername] = useState<string>("");
@@ -51,22 +52,32 @@ export default function AdminLoginForm() {
 
     try {
       setLoading(true);
-      const response = await fetch("/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username, password }),
-      });
-      const data = await response.json();
-      if (response.ok) {
-        // Handle successful login
-        console.log("Login successful:", data);
+      // const response = await fetch("/api/login", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({ username, password }),
+      // });
+      // const data = await response.json();
+      // if (response.ok) {
+      //   // Handle successful login
+      //   console.log("Login successful:", data);
 
-        router.push("/dashboard");
-      } else {
-        // Handle login error
-        console.error("Login failed:", data);
+      //   router.push("/dashboard");
+      // } else {
+      //   // Handle login error
+      //   console.error("Login failed:", data);
+      // }
+
+      const supabase = createClient();
+      const { error } = await supabase.auth.signInWithPassword({
+        email: username as string,
+        password: password as string,
+      });
+
+      if (!error) {
+        router.push("/");
       }
     } catch (error) {
       console.error("An error occurred during login:", error);

@@ -5,3 +5,13 @@ export const titleCase = (str: string): string => {
 export const wsSender = (type: string, payload: object): string => {
   return JSON.stringify({ type: type, payload: payload });
 };
+
+export const getDates = (): { today: Date; tomorrow: Date } => {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const tomorrow = new Date(today);
+  tomorrow.setDate(today.getDate() + 1);
+
+  return { today, tomorrow };
+};
