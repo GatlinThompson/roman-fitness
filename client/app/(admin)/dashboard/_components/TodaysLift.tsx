@@ -8,13 +8,16 @@ import { SuperSetComponent } from "@/components/workout/Workout";
 import Button from "@/components/ui/Button";
 
 export default async function TodaysLift() {
-  const lifts = await getTodayWorkout();
+  const { lifts, workoutId } = (await getTodayWorkout()) || {
+    lifts: [],
+    workoutId: "",
+  };
 
   return (
     <section>
       <h2 className="text-3xl text-center">Today's Lift</h2>
       <div className="flex flex-start justify-end">
-        <Button>Edit</Button>
+        <Button to={`/lift/${workoutId}/edit`}>Edit</Button>
       </div>
       <div>{lifts ? <WorkoutTable lifts={lifts} /> : <p>asd</p>}</div>
     </section>

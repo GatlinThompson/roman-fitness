@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 type ButtonProps = {
   children?: React.ReactNode;
   onClick?: () => void;
@@ -7,6 +9,7 @@ type ButtonProps = {
   disabled?: boolean;
   className?: string;
   color?: string;
+  to?: string;
 };
 
 export default function Button({
@@ -16,7 +19,23 @@ export default function Button({
   disabled = false,
   className,
   color,
+  to,
 }: ButtonProps) {
+  if (to) {
+    return (
+      <div className={`text-center ${className}`}>
+        <Link
+          href={to}
+          className={`bg-neutral-900 w-full p-2 rounded-lg font-bold text-white ${
+            color === "red" ? "bg-red-600 hover:bg-red-700" : ""
+          }`}
+        >
+          {children}
+        </Link>
+      </div>
+    );
+  }
+
   return (
     <div className={`text-center ${className}`}>
       <button

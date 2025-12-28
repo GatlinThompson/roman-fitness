@@ -5,6 +5,7 @@ import DashboardHeader from "./_components/DashboardHeader";
 import TodaysLift from "./_components/TodaysLift";
 import Head from "next/head";
 import { Metadata } from "next";
+import Button from "@/components/ui/Button";
 
 export const metadata: Metadata = {
   title: "Dashboard",
@@ -25,6 +26,7 @@ export default async function Dashboard() {
       </Head>
       <DashboardHeader />
       <TodaysLift />
+      <Button to="/lift">Create Lift</Button>
     </>
   );
 }

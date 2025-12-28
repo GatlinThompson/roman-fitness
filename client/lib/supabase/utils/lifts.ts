@@ -4,9 +4,10 @@ import { createClient } from "../server";
 import { getDates } from "@/utils/utils";
 import { Lift, SuperSet } from "@/types/lifts";
 
-export const getTodayWorkout = async (): Promise<
-  (Lift | SuperSet)[] | null
-> => {
+export const getTodayWorkout = async (): Promise<{
+  lifts: (Lift | SuperSet)[];
+  workoutId: string;
+} | null> => {
   //GET Date for start at 00 hours
   const { today, tomorrow } = getDates();
   const supabase = await createClient();
@@ -53,8 +54,9 @@ export const getTodayWorkout = async (): Promise<
         }
       }
     );
+    console.log(data[0].id);
     //Return workout
-    return lifts;
+    return { lifts: lifts, workoutId: data[0].id };
   }
   console.info("Data fetched from Supabase:", data);
   return null;
