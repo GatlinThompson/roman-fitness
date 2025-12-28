@@ -3,7 +3,7 @@ import AdminLoginForm from "./_components/AdminLoginForm";
 
 export default function Admin() {
   return (
-    <Main>
+    <Main centered>
       <AdminLoginForm />
     </Main>
   );

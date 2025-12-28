@@ -6,6 +6,7 @@ type ButtonProps = {
   type?: "button" | "submit" | "reset";
   disabled?: boolean;
   className?: string;
+  color?: string;
 };
 
 export default function Button({
@@ -14,13 +15,16 @@ export default function Button({
   type = "button",
   disabled = false,
   className,
+  color,
 }: ButtonProps) {
   return (
     <div className={`text-center ${className}`}>
       <button
         onClick={onClick}
         type={type}
-        className="bg-neutral-900  w-100 p-2 rounded-lg font-bold text-white"
+        className={`bg-neutral-900 w-full p-2 rounded-lg font-bold text-white ${
+          color === "red" ? "bg-red-600 hover:bg-red-700" : ""
+        }`}
         disabled={disabled}
       >
         {children}

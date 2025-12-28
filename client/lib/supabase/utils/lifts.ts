@@ -4,15 +4,18 @@ import { createClient } from "../server";
 import { getDates } from "@/utils/utils";
 import { Lift, SuperSet } from "@/types/lifts";
 
-export const getTodayWorkout = async (): Promise<Lift[] | null> => {
+export const getTodayWorkout = async (): Promise<
+  (Lift | SuperSet)[] | null
+> => {
   //GET Date for start at 00 hours
   const { today, tomorrow } = getDates();
   const supabase = await createClient();
   const { data, error } = await supabase
     .from("workouts")
-    .select("*, workout_lifts(lift(*, superset(*)))")
+    .select("*, workout_lifts(sequence, lift(*, superset(*)))")
     .lte("workout_date", new Date(tomorrow).toISOString())
-    .gte("workout_date", new Date(today).toISOString());
+    .gte("workout_date", new Date(today).toISOString())
+    .order("sequence", { foreignTable: "workout_lifts", ascending: true });
 
   console.log("TODAY WORKOUT DATA:", data);
   if (error) {
