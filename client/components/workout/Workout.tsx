@@ -4,7 +4,10 @@ import { isSuperSet } from "@/utils/utils";
 import Loading from "../ui/loading/Loading";
 
 export default async function Workout() {
-  const lifts = await getTodayWorkout();
+  const { lifts, workoutId } = (await getTodayWorkout()) || {
+    lifts: [],
+    workoutId: "",
+  };
 
   if (!lifts) {
     return <p>No lifts available</p>;
@@ -25,7 +28,7 @@ export default async function Workout() {
             </tr>
           </thead>
           <tbody>
-            {lifts.map((lift: Lift | SuperSet, i) => {
+            {lifts.map((lift: Lift | SuperSet) => {
               if (isSuperSet(lift)) {
                 return <SuperSetComponent key={lift.id} {...lift} />;
               } else {

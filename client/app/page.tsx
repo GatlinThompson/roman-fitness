@@ -11,9 +11,10 @@ export default function Home() {
   return (
     <Suspense fallback={<Loading />}>
       <Main>
-        <WorkoutHeader />
-        <Workout />
-        <GlassContainer>a</GlassContainer>
+        <GlassContainer className="h-200">
+          <WorkoutHeader />
+          <Workout />
+        </GlassContainer>
       </Main>
     </Suspense>
   );
