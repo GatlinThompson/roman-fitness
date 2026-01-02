@@ -1,21 +1,21 @@
 import Main from "@/components/layout/Main";
-import loading from "./loading";
-import WebSocketPage from "@/components/workout/WebSocket";
 import Workout from "@/components/workout/Workout";
-import { Suspense } from "react";
-import Loading from "./loading";
 import WorkoutHeader from "@/components/workout/WorkoutHeader";
 import GlassContainer from "@/components/ui/GlassContainer";
+import { getWorkoutData } from "@/lib/supabase/utils/lifts";
+import { Lift, SuperSet } from "@/types/lifts";
 
-export default function Home() {
+export default async function Home() {
+  const { lifts }: { lifts: (Lift | SuperSet)[] } =
+    (await getWorkoutData()) || {
+      lifts: [],
+    };
   return (
-    <Suspense fallback={<Loading />}>
-      <Main>
-        <GlassContainer className="h-200">
-          <WorkoutHeader />
-          <Workout />
-        </GlassContainer>
-      </Main>
-    </Suspense>
+    <Main>
+      <GlassContainer className="h-200">
+        <WorkoutHeader />
+        <Workout initialLifts={lifts} />
+      </GlassContainer>
+    </Main>
   );
 }

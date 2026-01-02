@@ -6,6 +6,7 @@ import { useState } from "react";
 import LiftInputGroup from "./LiftInputGroup";
 import LiftDateInput from "./LiftDateInput";
 import { useRouter } from "next/navigation";
+import Spinner from "@/components/ui/Spinner";
 
 type LiftRow = { id: string };
 
@@ -23,10 +24,12 @@ export default function LiftForm({
   initialLifts,
 }: Props) {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
   const isEditing = !!workoutId;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
 
     const formData = new FormData(e.currentTarget);
 
@@ -49,10 +52,12 @@ export default function LiftForm({
 
     if (res.ok) {
       router.push("/dashboard");
+      setLoading(false);
     } else {
       const error = await res.json();
       console.error("Error saving workout:", error);
       alert(`Error: ${error.error || "Failed to save workout"}`);
+      setLoading(false);
     }
   };
 
@@ -63,8 +68,14 @@ export default function LiftForm({
 
         <LiftInputGroup initialLifts={initialLifts} />
 
-        <Button type="submit">
-          {isEditing ? "Update Workout" : "Save Lift"}
+        <Button type="submit" disabled={loading} className="mt-4">
+          {loading ? (
+            <Spinner className="w-6 h-6" />
+          ) : isEditing ? (
+            "Update Workout"
+          ) : (
+            "Create Workout"
+          )}
         </Button>
       </form>
     </div>

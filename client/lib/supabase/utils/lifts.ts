@@ -4,9 +4,9 @@ import { createClient } from "../server";
 import { getDates } from "@/utils/utils";
 import { Lift, SuperSet } from "@/types/lifts";
 
-export const getTodayWorkout = async (): Promise<{
+export const getWorkoutData = async (): Promise<{
   lifts: (Lift | SuperSet)[];
-  workoutId: string;
+  workoutId?: string | number;
 } | null> => {
   //GET Date for start at 00 hours
   const { today, tomorrow } = getDates();
@@ -18,14 +18,12 @@ export const getTodayWorkout = async (): Promise<{
     .gte("workout_date", new Date(today).toISOString())
     .order("sequence", { foreignTable: "workout_lifts", ascending: true });
 
-  console.log("TODAY WORKOUT DATA:", data);
   if (error) {
     console.error("Error fetching lifts:", error);
     return null;
   } else if (data && data.length > 0) {
     const lifts: (SuperSet | Lift)[] = data[0].workout_lifts?.map(
       (item: any) => {
-        console.log(item);
         if (item.lift.superset) {
           return {
             id: item.lift.id,
@@ -54,10 +52,10 @@ export const getTodayWorkout = async (): Promise<{
         }
       }
     );
-    console.log(data[0].id);
+
     //Return workout
     return { lifts: lifts, workoutId: data[0].id };
   }
-  console.info("Data fetched from Supabase:", data);
+
   return null;
 };
