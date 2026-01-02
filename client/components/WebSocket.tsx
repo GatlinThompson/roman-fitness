@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Input from "../ui/Input";
-import Button from "../ui/Button";
+import Input from "./ui/Input";
+import Button from "./ui/Button";
 
 import { wsSender } from "@/utils/utils";
 
