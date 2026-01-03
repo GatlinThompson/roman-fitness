@@ -8,14 +8,18 @@
   box-sizing: border-box;
   position: relative;
   border-radius: 5px;
-  box-shadow: #00000080 0px 1rem 1.5rem 0rem;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 1rem 1.5rem 0rem;
 
   border: 1px solid transparent;
-  background: linear-gradient(0deg, #00000052 0%, #00000052 100%),
+  background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.32) 0%,
+      rgba(0, 0, 0, 0.32) 100%
+    ),
     conic-gradient(
-      from 185deg at 50.24% 99.67%,
+      from var(--angle) at 50.24% 99.67%,
 
-      #00000030 0deg,
+      360de #00000030 0deg,
       #300f0130 270deg,
       #00000030 360deg
     );
@@ -50,7 +54,17 @@
   right: 0;
   bottom: 0;
   border-radius: inherit;
-  border: 1px solid #1f0f09;
+  padding: 1px;
+  background: conic-gradient(
+    from var(--angle) at 50% 50%,
+    #09080f,
+    rgb(31, 15, 9),
+    #09080f
+  );
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: destination-out;
   z-index: 2;
   pointer-events: none;
   user-select: none;
