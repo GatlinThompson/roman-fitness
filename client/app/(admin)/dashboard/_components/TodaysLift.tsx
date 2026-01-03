@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { Lift, SuperSet } from "@/types/lifts";
 import Loading from "@/components/ui/loading/Loading";
 import GlassContainer from "@/components/ui/GlassContainer";
+import WorkoutHeader from "@/components/workout/WorkoutHeader";
 
 export default function TodaysLift() {
   const [lifts, setLifts] = useState<(Lift | SuperSet)[]>([]);
@@ -44,10 +45,15 @@ export default function TodaysLift() {
   }
 
   return (
-    <GlassContainer>
-      <Button to={workoutId ? `/lift/${workoutId}/edit` : "#"}>
-        Edit Workout
-      </Button>
+    <GlassContainer className="pt-8">
+      <div className="flex justify-end gap-2 me-2">
+        <Button to={workoutId ? `/lift/${workoutId}/edit` : "#"}>
+          Edit Workout
+        </Button>
+        <Button to="/lift">Create Lift</Button>
+      </div>
+
+      <WorkoutHeader />
       <Workout initialLifts={lifts} />
     </GlassContainer>
   );

@@ -1,7 +1,7 @@
 "use client";
 
 import { titleCase } from "@/utils/utils";
-import { error } from "console";
+import styles from "./Input.module.css";
 
 type InputProps = {
   title: string;
@@ -25,15 +25,17 @@ export default function Input({
   className,
 }: InputProps) {
   return (
-    <div className={`grid grid-rows-2 gap-1 w-full ${className} `}>
-      <label className="text-lg font-medium">{titleCase(title)}</label>
+    <div className={`grid grid-rows-2 w-full ${className} `}>
+      <label className="text-lg font-semibold font-montserrat">
+        {titleCase(title)}
+      </label>
       <input
         type={type}
         {...(!name ? null : { name: title.toLocaleLowerCase() })}
         onChange={onChange}
         value={value}
         placeholder={placeholder}
-        className="w-full bg-zinc-800 rounded-lg py-1.5 px-2 text-white border border-white-600 text-md"
+        className={`w-full glass-black rounded-lg py-2 px-3 text-white text-md font-montserrat ${styles["input-border"]}`}
       />
       {error && <p className="text-red-500 text-sm">{error}</p>}
     </div>

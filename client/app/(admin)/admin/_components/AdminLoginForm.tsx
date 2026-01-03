@@ -75,8 +75,12 @@ export default function AdminLoginForm() {
   };
   return (
     <>
-      <h1 className="text-3xl font-bold">Login</h1>
-      {loginError && <p className="text-red-500">{loginError}</p>}
+      <h1 className="text-3xl font-bold font-montserrat text-center mb-3">
+        Login
+      </h1>
+      {loginError && (
+        <p className="text-red-500 text-center mb-4">{loginError}</p>
+      )}
       <form onSubmit={handleSubmit} className="grid gap-5">
         <Input
           title="username"

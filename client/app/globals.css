@@ -15,7 +15,9 @@
   --dark-gray: #353538;
   --background: #19191b;
   --red-orange: #c42222;
-  --light-gray: #6b6b6d;
+  --light-gray: #8d8d8d;
+
+  --glass-black: rgba(0, 0, 0, 0.6);
 
   --font-montserrat: "Montserrat", sans-serif;
 }
@@ -29,6 +31,7 @@
   --color-red-orange: var(--red-orange);
   --color-light-gray: var(--light-gray);
   --font-montserrat: var(--font-montserrat);
+  --glass-black: var(--glass-black);
 }
 
 body {
@@ -56,4 +59,8 @@ body {
   100% {
     --angle: 360deg;
   }
+}
+
+.glass-black {
+  background-color: var(--glass-black);
 }

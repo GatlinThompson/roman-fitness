@@ -26,7 +26,7 @@ export default function Button({
       <div className={`text-center ${className}`}>
         <Link
           href={to}
-          className={`bg-neutral-900 w-full p-2 rounded-lg font-bold text-white ${
+          className={`glass-black w-full p-2 rounded-lg font-bold text-white font-montserrat ${
             color === "red" ? "bg-red-600 hover:bg-red-700" : ""
           }`}
         >
@@ -41,7 +41,7 @@ export default function Button({
       <button
         onClick={onClick}
         type={type}
-        className={`bg-neutral-900 w-full p-2 rounded-lg font-bold text-white ${
+        className={`glass-black w-full p-2 rounded-lg font-bold text-white font-montserrat ${
           color === "red" ? "bg-red-600 hover:bg-red-700" : ""
         }`}
         disabled={disabled}

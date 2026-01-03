@@ -28,11 +28,7 @@ export default async function Dashboard() {
       </Head>
 
       <Main>
-        <DashboardHeader />
-
         <TodaysLift />
-
-        <Button to="/lift">Create Lift</Button>
       </Main>
     </>
   );

@@ -12,7 +12,7 @@ export default function GlassContainer({
 }: GlassContainerProps) {
   return (
     <div
-      className={`${styles["glass-card"]} w-full rounded-lg md:p-8 p-3 ${className}`}
+      className={`${styles["glass-card"]} w-full rounded-lg md:p-8 p-3 pb-8  ${className}`}
     >
       {children}
     </div>
