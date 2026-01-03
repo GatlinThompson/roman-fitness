@@ -1,6 +1,6 @@
 .workout-table-container {
   width: 100%;
-  /*background-color: rgba(28, 28, 28, 0.2);*/
+  background-color: #1c1c1c33;
   border-radius: 0.5rem; /* rounded-lg */
   border: 1px solid #121212;
   border-bottom: 1px solid #252424;
@@ -8,8 +8,8 @@
 }
 
 .workout-table-header {
-  backdrop-filter: blur(10px);
   background-color: #00000099;
+  backdrop-filter: blur(10px);
   border: 1px solid #121212;
 }
 
