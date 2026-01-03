@@ -1,8 +1,8 @@
-/*@property --angle {
+@property --angle {
   syntax: "<angle>";
   initial-value: 185deg;
   inherits: false;
-}*/
+}
 
 .glass-card {
   box-sizing: border-box;
@@ -11,6 +11,7 @@
   box-shadow: rgba(0, 0, 0, 0.5) 0px 1rem 1.5rem 0rem;
 
   border: 1px solid transparent;
+  border-image: linear-gradient(185deg, #09080f, #1f0f09, #09080f) 1;
   background: linear-gradient(
       0deg,
       rgba(0, 0, 0, 0.32) 0%,
@@ -19,14 +20,15 @@
     conic-gradient(
       from var(--angle) at 50.24% 99.67%,
 
-      360de #00000030 0deg,
+      360deg,
+      #00000030 0deg,
       #300f0130 270deg,
       #00000030 360deg
     );
+  background-origin: border-box;
+  background-clip: padding-box;
 
   isolation: isolate;
-  /* animation for rotating gradient border */
-  /* animation: rotateGradient 40s linear infinite; */
 }
 
 .glass-card::before {
@@ -58,7 +60,7 @@
   background: conic-gradient(
     from var(--angle) at 50% 50%,
     #09080f,
-    rgb(31, 15, 9),
+    rgb(49, 26, 18),
     #09080f
   );
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -68,4 +70,14 @@
   z-index: 2;
   pointer-events: none;
   user-select: none;
+  animation: radialGradient 40s linear infinite;
+}
+
+@keyframes radialGradient {
+  0% {
+    --angle: 135deg;
+  }
+  100% {
+    --angle: 495deg;
+  }
 }
