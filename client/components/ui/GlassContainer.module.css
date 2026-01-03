@@ -8,19 +8,16 @@
   box-sizing: border-box;
   position: relative;
   border-radius: 5px;
-  box-shadow: rgba(0, 0, 0, 0.5) 0px 1rem 1.5rem 0rem;
+  box-shadow: #00000080 0px 1rem 1.5rem 0rem;
 
   border: 1px solid transparent;
-  background: linear-gradient(
-      0deg,
-      rgba(0, 0, 0, 0.32) 0%,
-      rgba(0, 0, 0, 0.32) 100%
-    ),
+  background: linear-gradient(0deg, #00000052 0%, #00000052 100%),
     conic-gradient(
       from var(--angle) at 50.24% 99.67%,
-      rgba(0, 0, 0, 0.19) 0deg,
-      rgba(48, 15, 1, 0.19) 270deg,
-      rgba(0, 0, 0, 0.19) 360deg
+
+      360de #00000030 0deg,
+      #300f0130 270deg,
+      #00000030 360deg
     );
 
   isolation: isolate;
@@ -55,9 +52,9 @@
   padding: 1px;
   background: conic-gradient(
     from var(--angle) at 50% 50%,
-    rgba(9, 8, 15, 1),
+    #09080f,
     rgb(31, 15, 9),
-    rgba(9, 8, 15, 1)
+    #09080f
   );
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
