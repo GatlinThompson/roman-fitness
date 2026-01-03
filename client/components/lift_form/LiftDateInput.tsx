@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import styles from "./LiftInput.module.css";
 
 export default function LiftDateInput({
   initialDate,
@@ -42,11 +43,13 @@ export default function LiftDateInput({
   const dateValue = date.toISOString().split("T")[0];
 
   return (
-    <div className="flex items-center gap-4 mx-2 p-4 bg-secondary rounded-lg">
+    <div
+      className={`flex items-center gap-4 mx-2 p-4 glass-black ${styles["input-border"]} rounded-lg`}
+    >
       <button
         type="button"
         onClick={() => changeDate(-1)}
-        className="p-2 hover:bg-gray-700 rounded transition-colors"
+        className="p-2 hover:bg-gray-700 rounded transition-colors text-red-orange"
         aria-label="Previous day"
       >
         <svg
@@ -59,7 +62,7 @@ export default function LiftDateInput({
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
-            strokeWidth={2}
+            strokeWidth={4}
             d="M15 19l-7-7 7-7"
           />
         </svg>
@@ -82,7 +85,7 @@ export default function LiftDateInput({
       <button
         type="button"
         onClick={() => changeDate(1)}
-        className="p-2 hover:bg-gray-700 rounded transition-colors"
+        className="p-2 hover:bg-gray-700 rounded transition-colors text-red-orange"
         aria-label="Next day"
       >
         <svg
@@ -95,7 +98,7 @@ export default function LiftDateInput({
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
-            strokeWidth={2}
+            strokeWidth={4}
             d="M9 5l7 7-7 7"
           />
         </svg>

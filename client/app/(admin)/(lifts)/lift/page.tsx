@@ -1,5 +1,4 @@
-import React from "react";
-import LiftForm from "./_components/lift_form/LiftForm";
+import LiftForm from "@/components/lift_form/LiftForm";
 
 export default function page() {
   return (

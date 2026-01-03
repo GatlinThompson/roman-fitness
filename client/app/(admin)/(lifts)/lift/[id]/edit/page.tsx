@@ -1,5 +1,5 @@
 import React from "react";
-import LiftForm from "../../_components/lift_form/LiftForm";
+import LiftForm from "@/components/lift_form/LiftForm";
 import { createClient } from "@/lib/supabase/server";
 import { notFound } from "next/navigation";
 

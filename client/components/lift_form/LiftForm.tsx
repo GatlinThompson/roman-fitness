@@ -63,20 +63,25 @@ export default function LiftForm({
 
   return (
     <div>
-      <form onSubmit={handleSubmit} className="max-w-4xl mx-auto grid gap-6">
+      <form
+        onSubmit={handleSubmit}
+        className="max-w-4xl mx-auto grid gap-6 px-3"
+      >
         <LiftDateInput initialDate={initialDate} />
 
         <LiftInputGroup initialLifts={initialLifts} />
 
-        <Button type="submit" disabled={loading} className="mt-4">
-          {loading ? (
-            <Spinner className="w-6 h-6" />
-          ) : isEditing ? (
-            "Update Workout"
-          ) : (
-            "Create Workout"
-          )}
-        </Button>
+        <div className="mx-2 mb-10">
+          <Button type="submit" disabled={loading} className="">
+            {loading ? (
+              <Spinner className="w-6 h-6" />
+            ) : isEditing ? (
+              "Update Workout"
+            ) : (
+              "Create Workout"
+            )}
+          </Button>
+        </div>
       </form>
     </div>
   );

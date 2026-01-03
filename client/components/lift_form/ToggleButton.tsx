@@ -1,5 +1,6 @@
 import { div } from "framer-motion/client";
 import React from "react";
+import styles from "./ToggleButton.module.css";
 
 type ToggleButtonProps = {
   toggled: boolean;
@@ -17,17 +18,17 @@ export default function ToggleButton({
       <span className="text-white font-medium">{title}</span>
       <button
         type="button"
-        className="w-[100px] h-[40px] rounded-3xl bg-zinc-800 border border-white-600"
+        className={`w-[100px] h-[40px] rounded-3xl  ${
+          toggled ? "cool-red" : "glass-black"
+        } ${styles["toggle-button"]} `}
         onClick={OnChange}
       >
         <div className="flex h-full text-white font-semibold p-0.5">
           <div
-            className={`h-full bg-zinc-600 w-[36px] rounded-3xl transition-transform duration-300 ease-in-out flex items-center justify-center ${
-              toggled ? "translate-x-[60px]" : ""
+            className={`h-full w-[36px] rounded-3xl transition-all duration-300 ease-in-out flex items-center justify-center ${
+              toggled ? "translate-x-[60px] bg-zinc-200" : "bg-zinc-500"
             }`}
-          >
-            <span className="">{toggled ? "On" : "Off"}</span>
-          </div>
+          ></div>
         </div>
       </button>
     </div>

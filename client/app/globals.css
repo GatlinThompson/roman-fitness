@@ -12,6 +12,7 @@
   --light-gray: #8d8d8d;
 
   --glass-black: rgba(0, 0, 0, 0.6);
+  --cool-red: rgb(112, 39, 2);
 
   --font-montserrat: "Montserrat", sans-serif;
 }
@@ -26,6 +27,7 @@
   --color-light-gray: var(--light-gray);
   --font-montserrat: var(--font-montserrat);
   --glass-black: var(--glass-black);
+  --cool-red: var(--cool-red);
 }
 
 body {
@@ -48,6 +50,10 @@ body {
 
 .glass-black {
   background-color: var(--glass-black);
+}
+
+.cool-red {
+  background-color: var(--cool-red);
 }
 
 @keyframes radialGradient {

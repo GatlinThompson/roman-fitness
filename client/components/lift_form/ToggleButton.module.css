@@ -1,9 +1,5 @@
-.input-border {
+.toggle-button {
   border: 1px solid rgb(28, 27, 27);
   border-bottom: 1px solid rgba(37, 36, 36, 1);
-}
-
-.input-border:focus {
-  outline: none;
-  border-color: #29180a;
+  transition: all 0.3s ease-in-out;
 }

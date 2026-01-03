@@ -5,6 +5,9 @@ import LiftInput from "./LiftInput";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { i } from "framer-motion/client";
+import GlassContainer from "../ui/GlassContainer";
+import styles from "./LiftInput.module.css";
+import { BsX as Cross } from "react-icons/bs";
 
 type LiftRow = { id: string; data?: any };
 
@@ -65,19 +68,19 @@ export default function LiftInputGroup({ initialLifts }: Props) {
               exit={{ opacity: 0, x: -100 }}
               transition={{ duration: 0.3 }}
             >
-              <div className="bg-secondary p-4 mx-3 mb-6 rounded-lg shadow-md relative">
+              <div
+                className={`mb-10 p-3 md:p-6 rounded-lg shadow-lg ${styles["input-group"]}`}
+              >
                 <div className="flex items-center justify-between mb-1">
-                  <h2 className="text-3xl font-semibold">
+                  <h2 className="text-3xl font-semibold font-montserrat">
                     Lift {index !== undefined ? index + 1 : ""}
                   </h2>
                   <div>
                     {lifts.length > 1 && (
-                      <button
-                        type="button"
-                        onClick={() => removeLift(lift.id)}
-                        className="text-red-600 font-bold hover:text-red-800 text-4xl font-thin"
-                      >
-                        X
+                      <button type="button" onClick={() => removeLift(lift.id)}>
+                        <div>
+                          <Cross className="w-12 h-12 text-red-orange hover:text-red-800" />
+                        </div>
                       </button>
                     )}
                   </div>
