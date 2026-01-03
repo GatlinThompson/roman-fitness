@@ -79,7 +79,9 @@ export default async function EditLiftPage({ params }: Props) {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-4">Edit Workout</h1>
+      <h1 className="text-center font-bold my-6 font-montserrat text-4xl">
+        Edit Workout
+      </h1>
       <LiftForm
         workoutId={workout.id}
         initialDate={workout.workout_date}
