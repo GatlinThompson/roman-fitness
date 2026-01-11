@@ -32,10 +32,7 @@ export default function DailyLift({ day, index = 0 }: DailyLiftProps) {
       : `/lift?date=${day.fullDate}`;
 
   return (
-    <GlassContainer
-      className={`p-4 flex items-center justify-center `}
-      style={{ animationDelay: `${index * 100}ms` }}
-    >
+    <GlassContainer className={`p-4 flex items-center justify-center `}>
       <div className="text-center">
         <div className="text-3xl font-semibold text-white">{day.dayName}</div>
         <div className="text-xl text-white/60">{day.date}</div>

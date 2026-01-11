@@ -1,7 +1,7 @@
 import { Lift } from "@/types/lifts";
 import styles from "./Workout.module.css";
 import MobileLiftRow from "./MobileLiftRow";
-import Divider from "../ui/divider/Divider";
+import Divider from "@/components/ui/divider/Divider";
 
 export default function LiftRow({ lift, last }: { lift: Lift; last: boolean }) {
   return (

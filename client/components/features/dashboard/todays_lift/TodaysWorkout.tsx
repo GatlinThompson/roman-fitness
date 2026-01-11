@@ -1,8 +1,8 @@
 "use client";
 import { Lift, SuperSet } from "@/types/lifts";
 import { isSuperSet } from "@/utils/utils";
-import MobileLiftRow from "@/components/workout/MobileLiftRow";
-import MobileSuperSetRow from "@/components/workout/MobileSuperSetRow";
+import MobileLiftRow from "@/components/features/workout/MobileLiftRow";
+import MobileSuperSetRow from "@/components/features/workout/MobileSuperSetRow";
 import Divider from "@/components/ui/divider/Divider";
 
 type TodaysWorkoutProps = {

@@ -1,4 +1,4 @@
-import LiftForm from "@/components/lift_form/LiftForm";
+import LiftForm from "@/components/forms/LiftForm";
 
 type PageProps = {
   searchParams: Promise<{ date?: string }>;

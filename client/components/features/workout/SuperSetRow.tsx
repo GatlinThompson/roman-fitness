@@ -1,7 +1,7 @@
 import { SuperSet } from "@/types/lifts";
 import styles from "./Workout.module.css";
 import MobileSuperSetRow from "./MobileSuperSetRow";
-import Divider from "../ui/divider/Divider";
+import Divider from "@/components/ui/divider/Divider";
 
 /** *
  * @param superset the superset to display
