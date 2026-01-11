@@ -1,0 +1,56 @@
+import Button from "@/components/ui/Button";
+import GlassContainer from "@/components/ui/glass_card/GlassContainer";
+import React from "react";
+
+type DailyLiftProps = {
+  day: {
+    date: string;
+    dayName: string;
+    exerciseCount: number;
+    hasWorkout: boolean;
+    workoutId?: string | number;
+    fullDate: string;
+  };
+  index?: number;
+};
+
+const liftDays = [
+  {
+    Mon: "Chest",
+    Tue: "Leg",
+    Wed: "Arms",
+    Thu: "Chest",
+    Fri: "Leg",
+    Sat: "Shoulder",
+  },
+];
+
+export default function DailyLift({ day, index = 0 }: DailyLiftProps) {
+  const liftLink =
+    day.hasWorkout && day.workoutId
+      ? `/lift/${day.workoutId}/edit`
+      : `/lift?date=${day.fullDate}`;
+
+  return (
+    <GlassContainer
+      className={`p-4 flex items-center justify-center `}
+      style={{ animationDelay: `${index * 100}ms` }}
+    >
+      <div className="text-center">
+        <div className="text-3xl font-semibold text-white">{day.dayName}</div>
+        <div className="text-xl text-white/60">{day.date}</div>
+        <div className="my-3">
+          <div className="text-2xl font-bold text-white">
+            {day.exerciseCount + " Lifts" || "No Workout Made"}
+          </div>
+          <Button to={liftLink} className="mt-2 px-4 py-1 text-lg">
+            {day.hasWorkout ? "View Workout" : "Create Workout"}
+          </Button>
+        </div>
+        <div className="text-lg text-light-gray">
+          {liftDays[0][day.dayName as keyof (typeof liftDays)[0]] || "Rest"} Day
+        </div>
+      </div>
+    </GlassContainer>
+  );
+}

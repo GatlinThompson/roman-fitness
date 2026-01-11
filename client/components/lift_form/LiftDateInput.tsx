@@ -46,28 +46,6 @@ export default function LiftDateInput({
     <div
       className={`flex items-center gap-4 mx-2 p-4 glass-black ${styles["input-border"]} rounded-lg`}
     >
-      <button
-        type="button"
-        onClick={() => changeDate(-1)}
-        className="p-2 hover:bg-gray-700 rounded transition-colors text-red-orange"
-        aria-label="Previous day"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-6 w-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={4}
-            d="M15 19l-7-7 7-7"
-          />
-        </svg>
-      </button>
-
       <div className="flex-1 text-center">
         <p className="text-lg font-semibold">{formatDate(date)}</p>
         <input
@@ -79,30 +57,9 @@ export default function LiftDateInput({
             setDate(inputDate);
           }}
           className="hidden"
+          style={{ display: "none" }}
         />
       </div>
-
-      <button
-        type="button"
-        onClick={() => changeDate(1)}
-        className="p-2 hover:bg-gray-700 rounded transition-colors text-red-orange"
-        aria-label="Next day"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-6 w-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={4}
-            d="M9 5l7 7-7 7"
-          />
-        </svg>
-      </button>
     </div>
   );
 }

@@ -19,7 +19,7 @@ export default function TodaysWorkout({ lifts }: TodaysWorkoutProps) {
   if (!lifts || lifts.length === 0) {
     return (
       <p className="text-center text-light-gray p-4 text-2xl h-full flex justify-center items-center">
-        No lifts scheduled for today.
+        No workout scheduled for today.
       </p>
     );
   }

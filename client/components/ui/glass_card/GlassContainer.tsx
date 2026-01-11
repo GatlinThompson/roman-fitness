@@ -4,6 +4,7 @@ import styles from "./GlassContainer.module.css";
 type GlassContainerProps = {
   children: React.ReactNode;
   className?: string;
+  style?: React.CSSProperties;
 };
 
 /**
@@ -15,10 +16,12 @@ type GlassContainerProps = {
 export default function GlassContainer({
   children,
   className,
+  style,
 }: GlassContainerProps) {
   return (
     <div
       className={`${styles["glass-card"]} w-full rounded-lg md:p-8 p-3 pb-8  ${className}`}
+      style={style}
     >
       {children}
     </div>
