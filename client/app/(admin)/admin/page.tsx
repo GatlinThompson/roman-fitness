@@ -1,6 +1,11 @@
 import Main from "@/components/layout/Main";
 import AdminLoginForm from "@/components/features/auth/AdminLoginForm";
 import GlassContainer from "@/components/ui/glass_card/GlassContainer";
+import { Metadata } from "next/dist/lib/metadata/types/metadata-interface";
+
+export const metadata: Metadata = {
+  title: "Admin",
+};
 
 export default function Admin() {
   return (
