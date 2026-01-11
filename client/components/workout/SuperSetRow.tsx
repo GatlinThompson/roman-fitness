@@ -1,5 +1,13 @@
 import { SuperSet } from "@/types/lifts";
 import styles from "./Workout.module.css";
+import MobileSuperSetRow from "./MobileSuperSetRow";
+import Divider from "../ui/divider/Divider";
+
+/** *
+ * @param superset the superset to display
+ * @param last whether this is the last row in the list
+ * @returns the superset row component for desktop and mobile views
+ */
 
 export default function SuperSetRow({
   superset,
@@ -13,60 +21,7 @@ export default function SuperSetRow({
       {/* Mobile/Tablet: Single column layout */}
       <td className="block lg:table-cell py-3 px-4 lg:ps-5 lg:py-2">
         <section className="lg:hidden">
-          <article className="flex items-start gap-2">
-            <span className="font-bold text-xl text-red-orange font-montserrat">
-              SS
-            </span>
-            <ul className="flex-1 list-none p-0 m-0">
-              {superset.superset.map((lift, index) => (
-                <li key={lift.id} className="mb-3 last:mb-0">
-                  <h3
-                    className={`text-left font-semibold font-montserrat text-lg sm:text-xl mb-2 ${
-                      index === superset.superset.length - 1
-                        ? "text-red-300"
-                        : ""
-                    }`}
-                  >
-                    {lift.exercise}
-                  </h3>
-                  <ul className="flex gap-6 text-base sm:text-lg items-center list-none p-0 m-0">
-                    <li>
-                      <span className="text-gray-400 font-montserrat mr-2">
-                        Reps:
-                      </span>
-                      <span
-                        className={`font-semibold font-montserrat ${
-                          index === superset.superset.length - 1
-                            ? "text-red-300"
-                            : ""
-                        }`}
-                      >
-                        {lift.reps}
-                      </span>
-                    </li>
-                    <li>
-                      <span className="text-gray-400 font-montserrat mr-2">
-                        Tempo:
-                      </span>
-                      <span
-                        className={`font-semibold font-montserrat ${
-                          index === superset.superset.length - 1
-                            ? "text-red-300"
-                            : ""
-                        }`}
-                      >
-                        {!lift.tempo ? (
-                          <span className="text-2xl">-</span>
-                        ) : (
-                          lift.tempo
-                        )}
-                      </span>
-                    </li>
-                  </ul>
-                </li>
-              ))}
-            </ul>
-          </article>
+          <MobileSuperSetRow superset={superset} />
         </section>
         {/* Desktop: Keep original table layout */}
         <section className="hidden lg:flex flex-row text-left">
@@ -119,7 +74,7 @@ export default function SuperSetRow({
       </td>
       {!last && (
         <td className="absolute bottom-[-8px] left-0 w-full flex justify-center pointer-events-none">
-          <hr className={styles["lift-row-divider"]} />
+          <Divider />
         </td>
       )}
     </tr>

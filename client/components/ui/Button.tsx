@@ -1,15 +1,18 @@
 "use client";
 
 import Link from "next/link";
+import styles from "./Button.module.css";
 
 type ButtonProps = {
   children?: React.ReactNode;
   onClick?: () => void;
   type?: "button" | "submit" | "reset";
+  roundedTop?: boolean;
   disabled?: boolean;
   className?: string;
   color?: string;
   to?: string;
+  bordered?: boolean;
 };
 
 export default function Button({
@@ -20,14 +23,18 @@ export default function Button({
   className,
   color,
   to,
+  roundedTop = false,
+  bordered = false,
 }: ButtonProps) {
   if (to) {
     return (
       <div className={`text-center ${className}`}>
         <Link
           href={to}
-          className={`glass-black w-full p-2 rounded-lg font-bold text-white font-montserrat ${
+          className={`w-full p-2 font-bold text-white font-montserrat glass-black ${
             color === "red" ? "bg-red-600 hover:bg-red-700" : ""
+          } ${roundedTop ? "rounded-t-lg" : "rounded-lg"} ${
+            bordered ? styles.bordered : ""
           }`}
         >
           {children}
@@ -41,9 +48,9 @@ export default function Button({
       <button
         onClick={onClick}
         type={type}
-        className={`glass-black w-full p-2 rounded-lg font-bold text-white font-montserrat ${
+        className={`block glass-black w-full p-2 font-bold text-white font-montserrat ${
           color === "red" ? "bg-red-600 hover:bg-red-700" : ""
-        }`}
+        } ${roundedTop ? "rounded-t-lg" : "rounded-lg"}`}
         disabled={disabled}
       >
         {children}

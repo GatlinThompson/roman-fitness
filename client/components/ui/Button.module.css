@@ -1,0 +1,5 @@
+.bordered {
+  border-top: 1px solid rgb(18, 18, 18);
+  border-left: 1px solid rgb(18, 18, 18);
+  border-right: 1px solid rgb(18, 18, 18);
+}

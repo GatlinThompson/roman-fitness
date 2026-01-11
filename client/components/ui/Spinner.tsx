@@ -14,6 +14,7 @@ export default function Spinner({ className = "w-6 h-6" }: SpinnerProps) {
         height={32}
         width={32}
         className={`animate-spin ${className}`}
+        loading="eager"
       />
     </div>
   );

@@ -45,7 +45,7 @@ export default function TodaysLift() {
   }
 
   return (
-    <GlassContainer className="pt-8">
+    <GlassContainer className="pt-8 pb-4">
       <div className="flex justify-end gap-2 me-2">
         <Button to={workoutId ? `/lift/${workoutId}/edit` : "#"}>
           Edit Workout

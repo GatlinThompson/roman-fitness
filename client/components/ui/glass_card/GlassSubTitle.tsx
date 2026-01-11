@@ -26,7 +26,7 @@ export default function GlassSubTitle({
   const weightValue = weight ? weight : "normal";
   return (
     <h3
-      className={`text${className} font-montserrat font-${weightValue} text-${size} text-dark-gray`}
+      className={`text-${position} font-montserrat font-${weightValue} text-${size} text-dark-gray ${className}`}
     >
       {children}
     </h3>

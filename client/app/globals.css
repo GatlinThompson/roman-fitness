@@ -33,6 +33,13 @@
   --dark-gray: var(--dark-gray);
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  font-family: var(--font-montserrat);
+}
+
 body {
   background-color: var(--color-background);
   background: linear-gradient(

@@ -1,6 +1,7 @@
+import React from "react";
 import { redirect } from "next/navigation";
 import { getUser } from "@/lib/supabase/utils/getUser";
-import TodaysLift from "@/components/dashboard/todays_lift/TodaysLift";
+import TodaysLift from "./_components/todays_lift/TodaysLift";
 import Head from "next/head";
 import { Metadata } from "next";
 
@@ -24,7 +25,7 @@ export default async function Dashboard() {
         <meta property="og:title" content="My page title" key="title" />
       </Head>
 
-      <Main>
+      <Main grid>
         <TodaysLift />
       </Main>
     </>
