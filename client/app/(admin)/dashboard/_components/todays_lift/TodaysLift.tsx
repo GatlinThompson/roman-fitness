@@ -30,8 +30,6 @@ export default async function TodaysLift({ className }: TodaysLiftProps) {
     workoutId: undefined,
   };
 
-  console.log(date.toShortLongString());
-
   return (
     <section className={className}>
       <GlassContainer className={styles.container}>
