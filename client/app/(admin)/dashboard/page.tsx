@@ -1,8 +1,6 @@
-import React from "react";
 import { redirect } from "next/navigation";
 import { getUser } from "@/lib/supabase/utils/getUser";
 import TodaysLift from "@/components/features/dashboard/todays_lift/TodaysLift";
-import Head from "next/head";
 import { Metadata } from "next";
 
 import Main from "@/components/layout/Main";
@@ -10,7 +8,7 @@ import WorkoutHeader from "@/components/features/workout/WorkoutHeader";
 import WeeklyLifts from "@/components/features/dashboard/weekly_lifts/WeeklyLifts";
 
 export const metadata: Metadata = {
-  title: "Dashboard",
+  title: "Roman Fitness | Dashboard",
 };
 
 export default async function Dashboard() {
