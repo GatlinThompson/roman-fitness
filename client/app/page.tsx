@@ -43,7 +43,7 @@ export default function Home() {
   return (
     <Main>
       <GlassContainer>
-        <WorkoutHeader />
+        <WorkoutHeader className="mb-6" />
         <Workout initialLifts={lifts} />
       </GlassContainer>
     </Main>

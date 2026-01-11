@@ -31,8 +31,8 @@ export default async function TodaysLift({ className }: TodaysLiftProps) {
   };
 
   return (
-    <section className={className}>
-      <GlassContainer className={styles.container}>
+    <section className={`${className} ${styles.section} flex flex-col`}>
+      <GlassContainer className={`${styles.container} grow`}>
         <GlassTitle weight="bold" size="4xl" position="center" className="mb-1">
           Today's Lift
         </GlassTitle>
@@ -46,7 +46,7 @@ export default async function TodaysLift({ className }: TodaysLiftProps) {
           {date.toShortLongString()}
         </GlassSubTitle>
 
-        <div className="flex flex-col">
+        <div className="flex flex-col flex-1">
           <Button
             to={`/lift/${workoutId ? workoutId + "/edit" : ""}`}
             className="text-right me-1 mb-1"
@@ -55,7 +55,7 @@ export default async function TodaysLift({ className }: TodaysLiftProps) {
           >
             {lifts.length > 0 ? "Edit Workout" : "Create Workout"}
           </Button>
-          <GrayGlassContainer>
+          <GrayGlassContainer className="grow">
             <TodaysWorkout lifts={lifts} />
           </GrayGlassContainer>
         </div>

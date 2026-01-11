@@ -21,7 +21,7 @@ export default function Main({
 }: MainProps) {
   if (grid) {
     return (
-      <main className={`grid min-h-screen pt-6 md:p-6 p-2 ${className}`}>
+      <main className={`grid min-h-screen max-w-screen ${className}`}>
         {children}
       </main>
     );
