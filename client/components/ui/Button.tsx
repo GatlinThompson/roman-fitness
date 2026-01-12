@@ -8,11 +8,13 @@ type ButtonProps = {
   onClick?: () => void;
   type?: "button" | "submit" | "reset";
   roundedTop?: boolean;
+  roundedBottom?: boolean;
   disabled?: boolean;
   className?: string;
   color?: string;
   to?: string;
   bordered?: boolean;
+  borderedBottom?: boolean;
 };
 
 export default function Button({
@@ -24,7 +26,9 @@ export default function Button({
   color,
   to,
   roundedTop = false,
+  roundedBottom = false,
   bordered = false,
+  borderedBottom = false,
 }: ButtonProps) {
   if (to) {
     return (
@@ -34,7 +38,9 @@ export default function Button({
           className={`w-full p-2 font-bold text-white font-montserrat glass-black ${
             color === "red" ? "bg-red-600 hover:bg-red-700" : ""
           } ${roundedTop ? "rounded-t-lg" : "rounded-lg"} ${
-            bordered ? styles.bordered : ""
+            roundedBottom ? "rounded-b-lg" : "rounded-lg"
+          } ${bordered ? styles.bordered : ""} ${
+            borderedBottom ? styles["bordered-bottom"] : ""
           }`}
         >
           {children}
@@ -48,9 +54,11 @@ export default function Button({
       <button
         onClick={onClick}
         type={type}
-        className={`block glass-black w-full p-2 font-bold text-white font-montserrat ${
+        className={`w-full p-2 font-bold text-white font-montserrat glass-black ${
           color === "red" ? "bg-red-600 hover:bg-red-700" : ""
-        } ${roundedTop ? "rounded-t-lg" : "rounded-lg"}`}
+        }  ${roundedBottom ? "rounded-b-lg" : "rounded-lg"} ${
+          bordered ? styles.bordered : ""
+        } ${borderedBottom ? styles["bordered-bottom"] : ""}`}
         disabled={disabled}
       >
         {children}
