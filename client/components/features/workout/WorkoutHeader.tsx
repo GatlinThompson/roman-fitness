@@ -16,8 +16,6 @@ type WorkoutHeaderProps = {
  * @returns The rendered WorkoutHeader component.
  */
 export default async function WorkoutHeader({ className }: WorkoutHeaderProps) {
-  console.log("WorkoutHeader rendered");
-
   const phase: PhaseInfo | null = await getPhase();
 
   // Calculate week and day excluding Sundays

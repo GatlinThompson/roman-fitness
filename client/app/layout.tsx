@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
 import "@/utils/date";
+import GetLocaleTime from "@/lib/supabase/GetLocaleTime";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -21,6 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <GetLocaleTime />
       <body className={`antialiased ${montserrat.variable}`}>{children}</body>
     </html>
   );

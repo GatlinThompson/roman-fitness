@@ -8,6 +8,7 @@ import { getWorkoutData } from "@/lib/supabase/utils/lifts";
 import { Lift, SuperSet } from "@/types/lifts";
 import Button from "@/components/ui/Button";
 import TodaysWorkout from "./TodaysWorkout";
+import { cookies } from "next/headers";
 
 type TodaysLiftProps = {
   className?: string;
@@ -20,12 +21,15 @@ type TodaysLiftProps = {
  * @returns the today's lift component for the admin dashboard
  */
 export default async function TodaysLift({ className }: TodaysLiftProps) {
-  const date = new Date();
+  const cookieStore = await cookies();
+  const date = cookieStore.get("localeTime")?.value;
+
+  const newDate = date ? new Date(date) : new Date();
 
   const {
     lifts = [] as (Lift | SuperSet)[],
     workoutId = undefined as number | undefined,
-  } = (await getWorkoutData(date.toFormattedString())) || {
+  } = (await getWorkoutData(date)) || {
     lifts: [],
     workoutId: undefined,
   };
@@ -43,7 +47,7 @@ export default async function TodaysLift({ className }: TodaysLiftProps) {
           position="center"
           className="mb-8"
         >
-          {date.toShortLongString()}
+          {newDate.toShortLongString()}
         </GlassSubTitle>
 
         <div className="flex flex-col flex-1">

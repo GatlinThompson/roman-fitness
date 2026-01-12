@@ -11,7 +11,6 @@ export const getWorkoutData = async (
 } | null> => {
   // Use provided date or default to today in YYYY-MM-DD format
 
-  console.log("Getting workout data for date:", date);
   const dateStr = date || new Date().toISOString().split("T")[0];
   const supabase = await createClient();
   const { data, error } = await supabase
@@ -19,8 +18,6 @@ export const getWorkoutData = async (
     .select("*, workout_lifts(sequence, lift(*, superset(*)))")
     .eq("workout_date", `${dateStr}`)
     .order("sequence", { foreignTable: "workout_lifts", ascending: true });
-
-  console.log("Fetched workout data for date:", dateStr, data, error);
 
   if (error) {
     console.error("Error fetching lifts:", error);

@@ -4,14 +4,34 @@ import WorkoutHeader from "@/components/features/workout/WorkoutHeader";
 import GlassContainer from "@/components/ui/glass_card/GlassContainer";
 import { getWorkoutData } from "@/lib/supabase/utils/lifts";
 import { Lift, SuperSet } from "@/types/lifts";
+import { cookies } from "next/headers";
+import Spinner from "@/components/ui/Spinner";
 
 export default async function Home() {
-  const date = new Date();
+  const cookieStore = await cookies();
+  const date = cookieStore.get("localeTime")?.value;
+
+  // If no cookie is set yet, show loading state
+  if (!date) {
+    return (
+      <Main>
+        <GlassContainer>
+          <WorkoutHeader className="mb-6" />
+          <div className="p-6 h-90 lg:h-150 flex items-center justify-center">
+            <div className="flex flex-col items-center gap-4">
+              <Spinner className="w-12 h-12" />
+              <p className="text-light-gray text-lg">Loading workout...</p>
+            </div>
+          </div>
+        </GlassContainer>
+      </Main>
+    );
+  }
 
   const {
     lifts = [] as (Lift | SuperSet)[],
     workoutId = undefined as number | undefined,
-  } = (await getWorkoutData(date.toFormattedString())) || {
+  } = (await getWorkoutData(date)) || {
     lifts: [],
     workoutId: undefined,
   };
@@ -28,7 +48,7 @@ export default async function Home() {
           </div>
         )}
       </GlassContainer>
-      <p>{date.toLocaleDateString()}</p>
+      <p>{date}</p>
     </Main>
   );
 }
