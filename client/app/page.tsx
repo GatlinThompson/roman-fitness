@@ -48,7 +48,6 @@ export default async function Home() {
           </div>
         )}
       </GlassContainer>
-      <p>{date}</p>
     </Main>
   );
 }
