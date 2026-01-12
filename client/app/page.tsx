@@ -28,7 +28,7 @@ export default async function Home() {
           </div>
         )}
       </GlassContainer>
-      <p>{date.toFormattedString()}</p>
+      <p>{date.toLocaleDateString()}</p>
     </Main>
   );
 }
