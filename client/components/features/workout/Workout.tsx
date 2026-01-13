@@ -14,6 +14,14 @@ type WorkoutProps = {
 export default function Workout({ initialLifts }: WorkoutProps) {
   const { lifts, workoutId, loading } = useRealtimeWorkout(initialLifts);
 
+  if (lifts.length === 0 && !loading) {
+    return (
+      <div className="p-6 h-90 lg:h-150 text-light-gray  text-xl text-center flex items-center justify-center">
+        No workout scheduled for today.
+      </div>
+    );
+  }
+
   return (
     <div
       className={`${styles["workout-table-container"]} w-full overflow-x-auto shadow-2xl`}

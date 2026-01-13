@@ -40,13 +40,8 @@ export default async function Home() {
     <Main>
       <GlassContainer>
         <WorkoutHeader className="mb-6" />
-        {lifts.length > 0 ? (
-          <Workout initialLifts={lifts} />
-        ) : (
-          <div className="p-6 h-90 lg:h-150 text-light-gray  text-xl text-center flex items-center justify-center">
-            No workout scheduled for today.
-          </div>
-        )}
+
+        <Workout initialLifts={lifts} />
       </GlassContainer>
     </Main>
   );

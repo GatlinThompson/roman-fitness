@@ -7,6 +7,8 @@ import { PhaseInfo } from "@/types/phase";
 import { calculateWeekAndDay } from "@/utils/phase";
 import Button from "@/components/ui/Button";
 import { div } from "framer-motion/client";
+import PhaseChanger from "./PhaseChanger";
+import WorkoutWeekDay from "./WorkoutWeekDay";
 
 type WorkoutHeaderProps = {
   className?: string;
@@ -24,11 +26,6 @@ export default async function WorkoutHeader({
 }: WorkoutHeaderProps) {
   const phase: PhaseInfo | null = await getPhase();
 
-  // Calculate week and day excluding Sundays
-  const { week, day } = phase?.phase_started
-    ? calculateWeekAndDay(phase.phase_started)
-    : { week: 1, day: 1 };
-
   return (
     <section className={`${className} flex flex-col`}>
       <div
@@ -38,9 +35,7 @@ export default async function WorkoutHeader({
           <h1 className="font-bold font-montserrat text-lg lg:text-3xl">
             Phase {phase?.phase.phase_number || 1}
           </h1>
-          <h2 className="font-semibold text-lg lg:text-lg text-light-gray">
-            Week&nbsp;{week}&nbsp;Day&nbsp;{day}
-          </h2>
+          <WorkoutWeekDay phaseDate={phase?.phase_started || null} />
         </div>
         <div className="grow flex justify-center hidden md:flex lg:hidden xl:flex ps-20">
           <Image
@@ -63,17 +58,7 @@ export default async function WorkoutHeader({
         </div>
       </div>
       {/* Change Phase Button */}
-      {showChangePhase && (
-        <div className="-mt-0 flex justify-center">
-          <Button
-            roundedBottom
-            borderedBottom={true}
-            className=" w-full md:w-48"
-          >
-            Change Phase
-          </Button>
-        </div>
-      )}
+      {showChangePhase && <PhaseChanger />}
     </section>
   );
 }

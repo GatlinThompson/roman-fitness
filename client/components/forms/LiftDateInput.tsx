@@ -16,6 +16,21 @@ export default function LiftDateInput({
         Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate())
       );
     }
+
+    // Check for localeTime cookie
+    const cookieValue = document.cookie
+      .split("; ")
+      .find((row) => row.startsWith("localeTime="));
+
+    if (cookieValue) {
+      const cookieDate = decodeURIComponent(cookieValue.split("=")[1]);
+      // cookieDate format is MM/DD/YYYY
+      const d = new Date(cookieDate);
+      return new Date(
+        Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate())
+      );
+    }
+
     const now = new Date();
     return new Date(
       Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())
