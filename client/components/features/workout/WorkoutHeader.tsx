@@ -37,7 +37,7 @@ export default async function WorkoutHeader({
           </h1>
           <WorkoutWeekDay phaseDate={phase?.phase_started || null} />
         </div>
-        <div className="grow flex justify-center hidden md:flex lg:hidden xl:flex ps-20">
+        <div className="grow flex justify-center hidden md:flex lg:hidden xl:flex md:ps-26 lg:ps-30">
           <Image
             src={Logo}
             alt="Roman Fitness"
