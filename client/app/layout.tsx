@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
 import "@/utils/date";
-import GetLocaleTime from "@/lib/supabase/GetLocaleTime";
 import { ModalProvider } from "@/contexts/ModalContext";
 import Modal from "@/components/ui/modal/Modal";
 
@@ -24,7 +23,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <GetLocaleTime />
       <body className={`antialiased ${montserrat.variable}`}>
         <ModalProvider>
           {children}
