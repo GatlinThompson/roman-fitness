@@ -33,7 +33,7 @@ export default function Modal() {
             </div>
             <Divider />
 
-            {modalContent?.content}
+            <div className="px-2 pb-5 pt-5">{modalContent?.content}</div>
           </motion.div>
           <ModalBackdrop onClick={closeModal} />
         </ModalContainer>

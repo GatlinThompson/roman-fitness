@@ -2,20 +2,13 @@
 
 import Button from "@/components/ui/Button";
 import { useModal } from "@/contexts/ModalContext";
+import PhasContainer from "./PhasContainer";
 
 export default function PhaseChanger() {
   const { openModal } = useModal();
 
   const handleOpenPhaseChanger = () => {
-    openModal(
-      "Manage Phases",
-      <div className="relative">
-        <h2 className="text-xl font-bold mb-4">Change Phase</h2>
-        <p className="text-gray-700 dark:text-gray-300">
-          Phase changing functionality goes here.
-        </p>
-      </div>
-    );
+    openModal("Manage Phases", <PhasContainer />);
   };
   return (
     <div className="-mt-0 flex justify-center max-w-[300px] mx-auto">
