@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <Main>
       <GlassContainer>
-        <WorkoutHeader className="mb-6" />
+        <WorkoutHeader className="mb-6" location="/admin" />
         <Workout />
       </GlassContainer>
     </Main>

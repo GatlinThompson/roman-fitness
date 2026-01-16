@@ -1,6 +1,4 @@
-"use client";
-
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styles from "./Workout.module.css";
 import Logo from "@/public/roman-logo.png";
 import Image from "next/image";
@@ -12,11 +10,11 @@ import { div } from "framer-motion/client";
 import PhaseChanger from "./PhaseChanger";
 import WorkoutWeekDay from "./WorkoutWeekDay";
 import Link from "next/dist/client/link";
-import { usePathname } from "next/navigation";
 
 type WorkoutHeaderProps = {
   className?: string;
   showChangePhase?: boolean;
+  location?: string;
 };
 
 /**
@@ -24,19 +22,14 @@ type WorkoutHeaderProps = {
  * @param {string} className Optional additional CSS classes to apply to the container.
  * @returns The rendered WorkoutHeader component.
  */
-export default function WorkoutHeader({
+export default async function WorkoutHeader({
   className,
   showChangePhase,
+  location,
 }: WorkoutHeaderProps) {
-  const pathname = usePathname();
-  const [phase, setPhase] = useState<PhaseInfo | null>(null);
+  const phase: PhaseInfo | null = await getPhase();
 
-  useEffect(() => {
-    getPhase().then(setPhase);
-  }, []);
-
-  const pathDirection = pathname === "dashboard" ? "dashboard" : "";
-
+  const pathname = location || "/";
   return (
     <section className={`${className} flex flex-col`}>
       <div
@@ -49,7 +42,7 @@ export default function WorkoutHeader({
           <WorkoutWeekDay phaseDate={phase?.phase_started || null} />
         </div>
         <div className="grow flex justify-center hidden md:flex lg:hidden xl:flex md:ps-26 lg:ps-30">
-          <Link href={`/${pathDirection}`}>
+          <Link href={pathname}>
             <Image
               src={Logo}
               alt="Roman Fitness"
