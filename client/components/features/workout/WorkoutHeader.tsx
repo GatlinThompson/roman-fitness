@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import styles from "./Workout.module.css";
 import Logo from "@/public/roman-logo.png";
 import Image from "next/image";
@@ -9,6 +11,8 @@ import Button from "@/components/ui/Button";
 import { div } from "framer-motion/client";
 import PhaseChanger from "./PhaseChanger";
 import WorkoutWeekDay from "./WorkoutWeekDay";
+import Link from "next/dist/client/link";
+import { usePathname } from "next/navigation";
 
 type WorkoutHeaderProps = {
   className?: string;
@@ -20,11 +24,18 @@ type WorkoutHeaderProps = {
  * @param {string} className Optional additional CSS classes to apply to the container.
  * @returns The rendered WorkoutHeader component.
  */
-export default async function WorkoutHeader({
+export default function WorkoutHeader({
   className,
   showChangePhase,
 }: WorkoutHeaderProps) {
-  const phase: PhaseInfo | null = await getPhase();
+  const pathname = usePathname();
+  const [phase, setPhase] = useState<PhaseInfo | null>(null);
+
+  useEffect(() => {
+    getPhase().then(setPhase);
+  }, []);
+
+  const pathDirection = pathname === "dashboard" ? "dashboard" : "";
 
   return (
     <section className={`${className} flex flex-col`}>
@@ -38,13 +49,15 @@ export default async function WorkoutHeader({
           <WorkoutWeekDay phaseDate={phase?.phase_started || null} />
         </div>
         <div className="grow flex justify-center hidden md:flex lg:hidden xl:flex md:ps-26 lg:ps-30">
-          <Image
-            src={Logo}
-            alt="Roman Fitness"
-            width={200}
-            height={58}
-            className="aspect-[187/58] object-contain"
-          />
+          <Link href={`/${pathDirection}`}>
+            <Image
+              src={Logo}
+              alt="Roman Fitness"
+              width={200}
+              height={58}
+              className="aspect-[187/58] object-contain"
+            />
+          </Link>
         </div>
         <div className="md:text-right flex flex-col">
           <h1 className="font-bold font-montserrat text-lg lg:text-3xl">
