@@ -7,7 +7,7 @@ import { PhaseInfo } from "@/types/phase";
 import { calculateWeekAndDay } from "@/utils/phase";
 import Button from "@/components/ui/Button";
 import { div } from "framer-motion/client";
-import PhaseChanger from "./PhaseChanger";
+import PhaseChanger from "@/components/features/phase/PhaseChanger";
 import WorkoutWeekDay from "./WorkoutWeekDay";
 import Link from "next/dist/client/link";
 

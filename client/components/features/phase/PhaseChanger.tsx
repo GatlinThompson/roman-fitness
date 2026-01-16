@@ -8,6 +8,7 @@ export default function PhaseChanger() {
 
   const handleOpenPhaseChanger = () => {
     openModal(
+      "Manage Phases",
       <div className="relative">
         <h2 className="text-xl font-bold mb-4">Change Phase</h2>
         <p className="text-gray-700 dark:text-gray-300">
@@ -24,7 +25,7 @@ export default function PhaseChanger() {
         borderedBottom={true}
         className=" w-full md:w-48"
       >
-        Change Phase
+        Manage Phases
       </Button>
     </div>
   );
