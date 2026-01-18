@@ -83,14 +83,18 @@ export default function Phase({
       </div>
       {index === 0 && (
         <div className="flex flex-col md:flex-row gap-4">
-          <Button bordered onClick={extendWeek}>
-            +1 Week
-          </Button>
           {lessThanAWeekLeft() && (
-            <Button bordered onClick={reduceWeek}>
+            <Button
+              bordered
+              onClick={reduceWeek}
+              className="order-2 md:order-1"
+            >
               -1 Week
             </Button>
           )}
+          <Button onClick={extendWeek} className="order-1 md:order-2">
+            +1 Week
+          </Button>
         </div>
       )}
     </div>
