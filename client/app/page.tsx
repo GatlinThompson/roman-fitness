@@ -1,3 +1,4 @@
+"use client";
 import Main from "@/components/layout/Main";
 import Workout from "@/components/features/workout/Workout";
 import WorkoutHeader from "@/components/features/workout/WorkoutHeader";
@@ -7,7 +8,6 @@ export default function Home() {
   return (
     <Main>
       <GlassContainer>
-        <WorkoutHeader className="mb-6" location="/admin" />
         <Workout />
       </GlassContainer>
     </Main>
