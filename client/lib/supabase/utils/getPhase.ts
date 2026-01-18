@@ -5,8 +5,9 @@ import { PhaseInfo } from "@/types/phase";
 export const getPhase = async (): Promise<PhaseInfo | null> => {
   const supabase = await createClient();
   const { data, error } = await supabase
-    .from("current_info")
-    .select("phase(level, phase_number, percentage), phase_started")
+    .from("phase_management")
+    .select("phase(level, phase_number, percentage), start_date")
+    .lt("start_date", new Date().toISOString())
     .limit(1)
     .single();
 

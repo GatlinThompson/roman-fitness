@@ -4,5 +4,5 @@ export type PhaseInfo = {
     phase_number: number;
     percentage: number;
   };
-  phase_started: string;
+  start_date: string;
 };

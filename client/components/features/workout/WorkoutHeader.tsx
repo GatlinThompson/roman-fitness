@@ -6,7 +6,7 @@ import { getPhase } from "@/lib/supabase/utils/getPhase";
 import { PhaseInfo } from "@/types/phase";
 import { calculateWeekAndDay } from "@/utils/phase";
 import Button from "@/components/ui/Button";
-import { div } from "framer-motion/client";
+import { div, p } from "framer-motion/client";
 import PhaseChanger from "@/components/features/phase/PhaseChanger";
 import WorkoutWeekDay from "./WorkoutWeekDay";
 import Link from "next/dist/client/link";
@@ -30,6 +30,7 @@ export default async function WorkoutHeader({
   const phase: PhaseInfo | null = await getPhase();
 
   const pathname = location || "/";
+
   return (
     <section className={`${className} flex flex-col`}>
       <div
@@ -39,7 +40,7 @@ export default async function WorkoutHeader({
           <h1 className="font-bold font-montserrat text-lg lg:text-3xl">
             Phase {phase?.phase.phase_number || 1}
           </h1>
-          <WorkoutWeekDay phaseDate={phase?.phase_started || null} />
+          <WorkoutWeekDay phaseDate={phase?.start_date || null} />
         </div>
         <div className="grow flex justify-center hidden md:flex lg:hidden xl:flex  absolute left-0 right-0 mx-auto">
           <Link href={pathname}>
