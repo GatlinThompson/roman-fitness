@@ -1,0 +1,10 @@
+.divider {
+  border: none;
+  height: 2px;
+  background-color: rgb(16, 15, 15);
+  box-shadow: 0 1px 1px rgb(45, 45, 45);
+  margin: 0.5rem auto;
+  width: 97%;
+  pointer-events: none;
+  user-select: none;
+}

@@ -16,6 +16,11 @@
     "noEmit": true,
     "jsx": "react-jsx",
 
+    /* Path Aliases */
+    "paths": {
+      "@/*": ["./*"]
+    },
+
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
@@ -24,5 +29,13 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src"]
+  "include": [
+    "app",
+    "lib",
+    "components",
+    "hooks",
+    "types",
+    "utils",
+    "vite-env.d.ts"
+  ]
 }
