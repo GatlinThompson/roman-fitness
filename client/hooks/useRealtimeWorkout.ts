@@ -1,6 +1,7 @@
-import { useEffect, useState, useCallback, useRef } from "react";
-import { supabase } from "@/lib/supabase/client";
-import type { Lift, SuperSet } from "@/types/lifts";
+"use client";
+import { useEffect, useState, useCallback, useMemo, useRef } from "react";
+import { createClient } from "@/lib/supabase/client";
+import { Lift, SuperSet } from "@/types/lifts";
 
 type UseRealtimeWorkoutReturn = {
   lifts: (Lift | SuperSet)[];
@@ -17,8 +18,9 @@ export function useRealtimeWorkout(): UseRealtimeWorkoutReturn {
   const isInitialLoadRef = useRef(true);
   const currentLiftIdsRef = useRef<Set<number>>(new Set());
 
+  const supabase = useMemo(() => createClient(), []);
   const isFetchingRef = useRef(false);
-  const debounceTimerRef = useRef<number | null>(null);
+  const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   // Memoize the update function to prevent recreation on every render
   const updateWorkoutData = useCallback(async () => {
@@ -143,7 +145,7 @@ export function useRealtimeWorkout(): UseRealtimeWorkoutReturn {
           schema: "public",
           table: "lifts",
         },
-        () => {
+        (payload) => {
           updateWorkoutData();
         },
       )
@@ -155,7 +157,7 @@ export function useRealtimeWorkout(): UseRealtimeWorkoutReturn {
           table: "workout_lifts",
           filter: `workout=eq.${workoutId}`,
         },
-        () => {
+        (payload) => {
           updateWorkoutData();
         },
       )
@@ -167,7 +169,7 @@ export function useRealtimeWorkout(): UseRealtimeWorkoutReturn {
           table: "workouts",
           filter: `id=eq.${workoutId}`,
         },
-        () => {
+        (payload) => {
           updateWorkoutData();
         },
       )

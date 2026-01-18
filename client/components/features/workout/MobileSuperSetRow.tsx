@@ -1,4 +1,4 @@
-import type { SuperSet } from "@/types/lifts";
+import { SuperSet } from "@/types/lifts";
 
 /**
  *

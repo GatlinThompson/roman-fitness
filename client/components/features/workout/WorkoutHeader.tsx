@@ -3,11 +3,8 @@ import Logo from "@/public/roman-logo.png";
 import Image from "next/image";
 import { getPhase } from "@/lib/supabase/utils/getPhase";
 import { PhaseInfo } from "@/types/phase";
-import { calculateWeekAndDay } from "@/utils/phase";
-import Button from "@/components/ui/Button";
 import PhaseChanger from "@/components/features/phase/PhaseChanger";
 import WorkoutWeekDay from "./WorkoutWeekDay";
-import Link from "next/dist/client/link";
 
 type WorkoutHeaderProps = {
   className?: string;
@@ -27,8 +24,6 @@ export default async function WorkoutHeader({
 }: WorkoutHeaderProps) {
   const phase: PhaseInfo | null = await getPhase();
 
-  const pathname = location || "/";
-
   return (
     <section className={`${className} flex flex-col`}>
       <div
@@ -41,15 +36,13 @@ export default async function WorkoutHeader({
           <WorkoutWeekDay phaseDate={phase?.start_date || null} />
         </div>
         <div className="grow flex justify-center hidden md:flex lg:hidden xl:flex  absolute left-0 right-0 mx-auto">
-          <Link href={pathname}>
-            <Image
-              src={Logo}
-              alt="Roman Fitness"
-              width={200}
-              height={58}
-              className="aspect-[187/58] object-contain"
-            />
-          </Link>
+          <Image
+            src={Logo}
+            alt="Roman Fitness"
+            width={200}
+            height={58}
+            className="aspect-[187/58] object-contain"
+          />
         </div>
         <div className="md:text-right flex flex-col">
           <h1 className="font-bold font-montserrat text-lg lg:text-3xl">

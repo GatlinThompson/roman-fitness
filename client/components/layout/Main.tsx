@@ -1,13 +1,13 @@
-interface MainProps {
+type MainProps = {
   children: React.ReactNode;
   centered?: boolean;
   grid?: boolean;
   className?: string;
-}
+};
 
 /**
  * A main layout component that centers its content and provides padding.
- * @param {ReactNode} children The content to be displayed inside the main layout.
+ * @param {React.ReactNode} children The content to be displayed inside the main layout.
  * @param {boolean} centered Optional flag to center the content vertically and horizontally.
  * @param {boolean} grid Optional flag to use a grid layout instead of flexbox.
  * @param {string} className Optional additional CSS classes to apply to the main layout.

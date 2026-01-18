@@ -1,3 +1,5 @@
+"use client";
+
 export default function WorkoutWeekDay({
   phaseDate,
 }: {
@@ -18,8 +20,8 @@ export default function WorkoutWeekDay({
         0,
         0,
         0,
-        0,
-      ),
+        0
+      )
     );
 
     // Count only non-Sunday days between start and today
@@ -48,7 +50,7 @@ export default function WorkoutWeekDay({
   }
 
   const { week, day } = calculateWeekAndDay(
-    phaseDate || new Date().toISOString().split("T")[0],
+    phaseDate || new Date().toISOString().split("T")[0]
   );
 
   return (

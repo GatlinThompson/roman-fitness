@@ -1,4 +1,4 @@
-import type { Lift } from "@/types/lifts";
+import { Lift } from "@/types/lifts";
 
 /**
  *

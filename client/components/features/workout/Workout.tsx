@@ -1,9 +1,11 @@
-import type { Lift, SuperSet } from "@/types/lifts";
+"use client";
+import { Lift, SuperSet } from "@/types/lifts";
 import { isSuperSet } from "@/utils/utils";
+import LiftRow from "./LiftRow";
 import SuperSetRow from "./SuperSetRow";
 import { useRealtimeWorkout } from "@/hooks/useRealtimeWorkout";
 import styles from "./Workout.module.css";
-import LiftRow from "./LiftRow";
+import Spinner from "@/components/ui/Spinner";
 
 export default function Workout() {
   const { lifts, workoutId, loading } = useRealtimeWorkout();
@@ -11,7 +13,7 @@ export default function Workout() {
   if (loading) {
     return (
       <div className="p-6 h-90 lg:h-150 text-light-gray text-xl text-center flex items-center justify-center flex-col gap-2">
-        {/* <Spinner className="h-8 w-8" /> */}
+        <Spinner className="h-8 w-8" />
         <p>Loading workout...</p>
       </div>
     );

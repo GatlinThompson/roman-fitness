@@ -1,4 +1,5 @@
-import type { SuperSet } from "@/types/lifts";
+import { SuperSet } from "@/types/lifts";
+import styles from "./Workout.module.css";
 import MobileSuperSetRow from "./MobileSuperSetRow";
 import Divider from "@/components/ui/divider/Divider";
 
