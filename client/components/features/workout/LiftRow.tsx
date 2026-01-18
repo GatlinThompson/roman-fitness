@@ -1,5 +1,4 @@
 import type { Lift } from "@/types/lifts";
-import styles from "./Workout.module.css";
 import MobileLiftRow from "./MobileLiftRow";
 import Divider from "@/components/ui/divider/Divider";
 
