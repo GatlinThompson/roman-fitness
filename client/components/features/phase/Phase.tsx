@@ -35,9 +35,8 @@ export default function Phase({
   onUpdate: () => void;
 }) {
   const extendWeek = async () => {
-    const response = await fetch("/api/phases/extend", {
+    const response = await fetch(`/api/phases/extend/${phase.id}`, {
       method: "PUT",
-      body: JSON.stringify({ id: phase.id }),
     });
 
     if (response.ok) {
@@ -50,9 +49,8 @@ export default function Phase({
   };
 
   const reduceWeek = async () => {
-    const response = await fetch("/api/phases/reduce", {
+    const response = await fetch(`/api/phases/reduce/${phase.id}`, {
       method: "PUT",
-      body: JSON.stringify({ id: phase.id }),
     });
     if (response.ok) {
       onUpdate();
