@@ -14,15 +14,7 @@ export default function Workout() {
     return (
       <div className="p-6 h-90 lg:h-150 text-light-gray text-xl text-center flex items-center justify-center flex-col gap-2">
         <Spinner className="h-8 w-8" />
-        <p
-          style={{
-            fontFamily: "Montserrat, sans-serif",
-            fontWeight: 500,
-            fontSize: "300px",
-          }}
-        >
-          Loading workout...
-        </p>
+        <p>Loading workout...</p>
       </div>
     );
   }

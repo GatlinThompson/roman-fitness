@@ -5,11 +5,5 @@ import WorkoutHeader from "@/components/features/workout/WorkoutHeader";
 import GlassContainer from "@/components/ui/glass_card/GlassContainer";
 
 export default function Home() {
-  return (
-    <Main>
-      <GlassContainer>
-        <Workout />
-      </GlassContainer>
-    </Main>
-  );
+  return <Main>Testing</Main>;
 }

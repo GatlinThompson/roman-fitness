@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
-@import "tailwindcss";
+/*@import "tailwindcss";*/
 
 :root {
   --primary: #232325;
@@ -19,7 +19,7 @@
   --dark-gray: #686868;
 }
 
-@theme {
+/*@theme {
   --color-primary: var(--primary);
   --color-secondary: var(--secondary);
   --color-foreground: var(--foreground);
@@ -31,7 +31,7 @@
   --glass-black: var(--glass-black);
   --cool-red: var(--cool-red);
   --dark-gray: var(--dark-gray);
-}
+}*/
 
 *,
 *::before,
@@ -42,12 +42,7 @@
 
 body {
   background-color: var(--color-background);
-  background: linear-gradient(
-    var(--angle),
-    #140505 0%,
-    #0d0b10 45%,
-    #050407 100%
-  );
+  background: linear-gradient(135deg, #140505 0%, #0d0b10 45%, #050407 100%);
 
   color: var(--color-foreground);
   margin: 0;
@@ -55,7 +50,7 @@ body {
 
   min-height: 100vh;
   min-width: 100vw;
-  animation: radialGradient 40s linear infinite;
+  /*animation: radialGradient 40s linear infinite;*/
 }
 
 .glass-black {
@@ -66,14 +61,14 @@ body {
   background-color: var(--cool-red);
 }
 
-@keyframes radialGradient {
+/*@keyframes radialGradient {
   0% {
     --angle: 135deg;
   }
   100% {
     --angle: 495deg;
   }
-}
+}*/
 
 @keyframes fadeInUp {
   from {
