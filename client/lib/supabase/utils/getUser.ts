@@ -6,5 +6,7 @@ export const getUser = async (): Promise<boolean> => {
 
   if (data) return true;
 
+  console.log("No user found");
+
   return false;
 };
