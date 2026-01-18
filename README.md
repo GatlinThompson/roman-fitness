@@ -1,6 +1,6 @@
 # Workout App
 
-A full-stack workout tracking application built with Next.js and Express, featuring real-time updates via WebSockets and powered by Supabase.
+A full-stack workout tracking application built with Next.js, featuring real-time updates via WebSockets and powered by Supabase.
 
 ## Features
 
@@ -23,14 +23,6 @@ A full-stack workout tracking application built with Next.js and Express, featur
 - **Icons:** React Icons
 - **Real-time:** WebSocket client
 
-### Backend (Server)
-
-- **Runtime:** Node.js with TypeScript
-- **Framework:** Express 5
-- **Database:** Supabase
-- **Real-time:** WebSocket (ws)
-- **CORS:** Enabled for cross-origin requests
-
 ## Project Structure
 
 ```
@@ -50,13 +42,6 @@ workout-app/
 │   │   └── supabase/      # Supabase client configuration
 │   ├── types/             # TypeScript type definitions
 │   └── utils/             # Utility functions
-└── server/                # Express backend server
-    ├── src/
-    │   ├── app.ts         # Main server file
-    │   ├── models/        # Data models
-    │   └── routes/        # API routes
-    └── lib/
-        └── supabase/      # Supabase server configuration
 ```
 
 ## Getting Started
@@ -78,14 +63,6 @@ NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 ```
 
-**Server (.env)**
-
-```env
-SUPABASE_URL=your_supabase_url
-SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
-PORT=3001
-```
-
 ### Installation
 
 1. **Clone the repository**
@@ -102,17 +79,11 @@ PORT=3001
    npm install
    ```
 
-3. **Install server dependencies**
-   ```bash
-   cd ../server
-   npm install
-   ```
-
 ### Development
 
-Run both the client and server concurrently:
+Run the client:
 
-**Terminal 1 - Client**
+**Terminal - Client**
 
 ```bash
 cd client
@@ -121,29 +92,12 @@ npm run dev
 
 The client will be available at `http://localhost:3000`
 
-**Terminal 2 - Server**
-
-```bash
-cd server
-npm run server
-```
-
-The server will run on `http://localhost:3001` (or your configured PORT)
-
 ### Production Build
 
 **Client**
 
 ```bash
 cd client
-npm run build
-npm start
-```
-
-**Server**
-
-```bash
-cd server
 npm run build
 npm start
 ```
@@ -191,12 +145,6 @@ This application uses Supabase for:
 - `npm run build` - Build for production
 - `npm start` - Start production server
 - `npm run lint` - Run ESLint
-
-### Server Scripts
-
-- `npm run server` - Start development server with nodemon
-- `npm run build` - Compile TypeScript to JavaScript
-- `npm start` - Start production server
 
 ## Contributing
 
