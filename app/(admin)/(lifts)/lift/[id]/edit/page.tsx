@@ -73,7 +73,7 @@ export default async function EditLiftPage({ params }: Props) {
   );
 
   return (
-    <div>
+    <div className="max-w-3xl mx-auto">
       <h1 className="text-center font-bold my-6 font-montserrat text-4xl">
         Edit Workout
       </h1>
