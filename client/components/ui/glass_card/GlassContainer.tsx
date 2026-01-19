@@ -19,11 +19,11 @@ export default function GlassContainer({
 }: GlassContainerProps) {
   return (
     <div
-      className={`${styles["glass-card"]} w-full rounded-lg md:p-8 p-3 pb-8  relative ${className}`}
+      className={`${styles["glass-card"]} w-full rounded-lg md:p-8 p-3 pb-8 relative ${className}`}
       style={style}
     >
       <div
-        className={`${styles["glass-background"]} w-full h-full absolute top-0 left-0 -z-10 opacity-30`}
+        className={`${styles["glass-background"]} w-full h-full absolute top-0 left-0 -z-10`}
       ></div>
       {children}
     </div>

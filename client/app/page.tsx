@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <Main>
       <GlassContainer>
-        <p>a</p>
+        <p>Hello</p>
       </GlassContainer>
     </Main>
   );
