@@ -44,31 +44,13 @@ body {
   background-color: var(--color-background);
   background: linear-gradient(135deg, #140505 0%, #0d0b10 45%, #050407 100%);
 
-  color: var(--color-foreground);
+  color: var(--foreground);
   margin: 0;
   padding: 0;
 
   min-height: 100vh;
   min-width: 100vw;
-  /*animation: radialGradient 40s linear infinite;*/
 }
-
-.glass-black {
-  background-color: var(--glass-black);
-}
-
-.cool-red {
-  background-color: var(--cool-red);
-}
-
-/*@keyframes radialGradient {
-  0% {
-    --angle: 135deg;
-  }
-  100% {
-    --angle: 495deg;
-  }
-}*/
 
 @keyframes fadeInUp {
   from {
@@ -114,4 +96,12 @@ body {
 
 .animate-slide-out-right {
   animation: slideOutRight 0.3s ease-out forwards;
+}
+
+.glass-black {
+  background-color: var(--glass-black);
+}
+
+.cool-red {
+  background-color: var(--cool-red);
 }

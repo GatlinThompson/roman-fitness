@@ -1,3 +1,5 @@
+import styles from "./Main.module.css";
+
 type MainProps = {
   children: React.ReactNode;
   centered?: boolean;

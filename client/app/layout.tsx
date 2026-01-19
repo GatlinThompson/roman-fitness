@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
+import "./utils.css";
 import "@/utils/date";
 import { ModalProvider } from "@/contexts/ModalContext";
 import Modal from "@/components/ui/modal/Modal";
+import SpinningBodyBackground from "@/components/layout/SpinningBodyBackground";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -23,12 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`antialiased ${montserrat.variable}`}>
-        <ModalProvider>
-          {children}
-          <Modal />
-        </ModalProvider>
-      </body>
+      <body className={`antialiased ${montserrat.variable}`}>{children}</body>
     </html>
   );
 }
