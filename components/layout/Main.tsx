@@ -30,7 +30,7 @@ export default function Main({
   return (
     <main
       className={`flex flex-col gap-4 items-center md:p-6 p-2 justify-items-center min-h-screen pt-6 ${
-        centered ? "justify-center" : ""
+        centered ? "justify-center" : " "
       } ${className}`}
     >
       {children}
