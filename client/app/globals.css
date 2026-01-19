@@ -44,7 +44,7 @@ body {
   background-color: var(--color-background);
   background: linear-gradient(135deg, #140505 0%, #0d0b10 45%, #050407 100%);
 
-  color: var(--foreground);
+  color: #dedfdf;
   margin: 0;
   padding: 0;
 
