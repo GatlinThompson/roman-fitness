@@ -39,6 +39,8 @@
 *::after {
   box-sizing: border-box;
   font-family: var(--font-montserrat);
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -105,4 +107,8 @@ body {
 
 .cool-red {
   background-color: var(--cool-red);
+}
+
+.normal-text {
+  font-size: 4rem;
 }

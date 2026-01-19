@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <Main>
       <GlassContainer>
-        <p>Hello</p>
+        <p className="normal-text">Hello</p>
       </GlassContainer>
     </Main>
   );
