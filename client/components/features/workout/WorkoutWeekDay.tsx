@@ -54,8 +54,8 @@ export default function WorkoutWeekDay({
   );
 
   return (
-    <h2 className="font-semibold text-lg lg:text-lg text-light-gray">
+    <>
       Week&nbsp;{week}&nbsp;Day&nbsp;{day}
-    </h2>
+    </>
   );
 }

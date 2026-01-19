@@ -9,8 +9,9 @@
 
 .workout-table-header {
   backdrop-filter: blur(10px);
-  background-color: rgba(0, 0, 0, 0.6);
-  border: 1px solid rgba(18, 18, 18, 1);
+  background-color: #000000;
+  border: 1px solid #121212;
+  opacity: 0.6;
 }
 
 .workout-table-body {

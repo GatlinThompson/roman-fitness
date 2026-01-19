@@ -1,0 +1,18 @@
+.workout-table-header {
+  backdrop-filter: blur(10px);
+  background-color: #000000;
+  border: 1px solid #121212;
+  opacity: 0.6;
+}
+
+.text-big {
+  font-size: 2rem;
+}
+
+.text-bigger {
+  font-size: 3.5rem;
+}
+
+.workout-header {
+  padding: 2.5rem;
+}
