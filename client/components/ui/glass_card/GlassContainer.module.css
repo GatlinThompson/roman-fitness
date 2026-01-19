@@ -1,6 +1,8 @@
 .glass-card {
   position: relative;
-  border-radius: 5px;
+  border-radius: 0.5rem;
+  padding: 3rem;
+  padding-bottom: 8rem;
 
   border: 0.5px solid #311a125d;
   background:

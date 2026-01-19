@@ -1,14 +1,6 @@
 .main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
-  width: 100%;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-  gap: 1.5rem;
-
-  padding: 2rem;
+  padding: 8em;
+  padding-top: 12rem;
 }
 
 .justify-center {
