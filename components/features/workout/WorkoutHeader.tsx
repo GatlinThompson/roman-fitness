@@ -3,11 +3,11 @@ import Logo from "@/public/roman-logo.png";
 import Image from "next/image";
 import { getPhase } from "@/lib/supabase/utils/getPhase";
 import { PhaseInfo } from "@/types/phase";
-import { calculateWeekAndDay } from "@/utils/phase";
-import Button from "@/components/ui/Button";
+import { PhaseInfo as PhaseChangerInfo } from "@/components/features/phase/Phase";
 import PhaseChanger from "@/components/features/phase/PhaseChanger";
 import WorkoutWeekDay from "./WorkoutWeekDay";
 import Link from "next/dist/client/link";
+import { p } from "framer-motion/client";
 
 type WorkoutHeaderProps = {
   className?: string;
@@ -28,6 +28,20 @@ export default async function WorkoutHeader({
   const phase: PhaseInfo | null = await getPhase();
 
   const pathname = location || "/";
+
+  let phaseManagement: PhaseChangerInfo[] = [];
+
+  if (showChangePhase) {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/phases`,
+    );
+
+    const data = await response.json();
+    const phases = data.phases;
+    if (phases) {
+      phaseManagement = phases;
+    }
+  }
 
   return (
     <section className={`${className} flex flex-col`}>
@@ -63,7 +77,7 @@ export default async function WorkoutHeader({
         </div>
       </div>
       {/* Change Phase Button */}
-      {showChangePhase && <PhaseChanger />}
+      {showChangePhase && <PhaseChanger phases={phaseManagement} />}
     </section>
   );
 }

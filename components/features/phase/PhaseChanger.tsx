@@ -3,6 +3,7 @@
 import Button from "@/components/ui/Button";
 import { useModal } from "@/contexts/ModalContext";
 import PhaseContainer from "./PhaseContainer";
+import type { PhaseInfo } from "./Phase";
 
 export const fetchPhases = async () => {
   const response = await fetch("/api/phases");
@@ -10,15 +11,13 @@ export const fetchPhases = async () => {
   return data.phases;
 };
 
-export default function PhaseChanger() {
+export default function PhaseChanger({ phases }: { phases: PhaseInfo[] }) {
   const { openModal } = useModal();
 
   const handleOpenPhaseChanger = async () => {
-    const phases = await fetchPhases();
-    if (phases) {
-      openModal("Manage Phases", <PhaseContainer phases={phases} />);
-    }
+    openModal("Manage Phases", <PhaseContainer phases={phases} />);
   };
+
   return (
     <div className="-mt-0 flex justify-center max-w-[300px] mx-auto">
       <Button
