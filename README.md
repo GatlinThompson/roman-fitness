@@ -1,163 +1,87 @@
-# Workout App
+# Roman Fitness
 
-A full-stack workout tracking application built with Next.js, featuring real-time updates via WebSockets and powered by Supabase.
+A personal workout tracking app built with Next.js and Supabase. Structured around a phase-based periodization system, it tracks lifts and supersets day-by-day across training phases with real-time updates.
 
 ## Features
 
-- 📊 **Dashboard** - View today's workout and weekly lift schedule
-- 🏋️ **Workout Tracking** - Track lifts, supersets, and workout sessions
-- 👨‍💼 **Admin Panel** - Manage and edit lifts with a dedicated admin interface
-- ⚡ **Real-time Updates** - WebSocket integration for live workout data
-- 📱 **Responsive Design** - Mobile and desktop-optimized views
-- 🎨 **Modern UI** - Glass-morphism design with Tailwind CSS and Framer Motion
+- **Phase-based training** — Cycles through 5 OPT model phases: Stabilization Endurance, Strength Endurance, Muscular Development, Maximal Strength, and Power. Tracks current week and day within each phase (Mon–Sat, Sundays excluded).
+- **Workout dashboard** — Shows today's scheduled lifts and the full weekly workout view.
+- **Lift & superset tracking** — Each lift stores exercise name, reps, and tempo. Supersets group multiple lifts together.
+- **Admin panel** — Supabase-authenticated route for managing lifts, supersets, and phase configuration.
+- **Real-time updates** — WebSocket connection keeps workout data in sync across devices.
+- **Mobile-first UI** — Glass-morphism design with Tailwind CSS and Framer Motion animations.
 
 ## Tech Stack
 
-### Frontend (Client)
-
-- **Framework:** Next.js 16 (App Router)
-- **Language:** TypeScript
-- **Styling:** Tailwind CSS 4
-- **Animations:** Framer Motion
-- **Database:** Supabase (Client-side)
-- **Icons:** React Icons
-- **Real-time:** WebSocket client
+| Layer | Technology |
+|---|---|
+| Framework | Next.js 16 (App Router) |
+| Language | TypeScript |
+| Styling | Tailwind CSS v4 |
+| Animations | Framer Motion |
+| Backend / Auth / DB | Supabase |
+| Real-time | WebSocket |
+| Font | Montserrat (Google Fonts) |
 
 ## Project Structure
 
 ```
-workout-app/
-├── client/                 # Next.js frontend application
-│   ├── app/               # App router pages and API routes
-│   │   ├── (admin)/       # Admin-only pages
-│   │   ├── api/           # API endpoints
-│   │   └── page.tsx       # Home page
-│   ├── components/        # Reusable React components
-│   │   ├── features/      # Feature-specific components
-│   │   ├── forms/         # Form components
-│   │   ├── layout/        # Layout components
-│   │   └── ui/            # UI primitives
-│   ├── hooks/             # Custom React hooks
-│   ├── lib/               # Libraries and utilities
-│   │   └── supabase/      # Supabase client configuration
-│   ├── types/             # TypeScript type definitions
-│   └── utils/             # Utility functions
+roman-fitness/
+├── app/
+│   ├── (admin)/admin/     # Auth-gated admin panel
+│   ├── api/               # REST API routes (lifts, phases)
+│   └── layout.tsx         # Root layout with ModalProvider
+├── components/
+│   ├── features/          # Dashboard, workout, and auth components
+│   ├── forms/             # Form inputs (lift date, options)
+│   └── ui/                # Primitives — button, modal, spinner, glass card
+├── contexts/              # Modal context
+├── lib/supabase/          # Supabase client, server, middleware, and query utils
+├── types/                 # TypeScript types (Lift, SuperSet, PhaseInfo)
+└── utils/                 # Date helpers, phase calculation, lift utilities
 ```
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js (v20 or higher recommended)
-- npm or yarn
-- Supabase account and project
+- Node.js v20+
+- A [Supabase](https://supabase.com) project
 
 ### Environment Variables
 
-Create `.env.local` files in both client and server directories:
-
-**Client (.env.local)**
+Create a `.env.local` file at the project root:
 
 ```env
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 ```
 
-### Installation
-
-1. **Clone the repository**
-
-   ```bash
-   git clone <repository-url>
-   cd workout-app
-   ```
-
-2. **Install client dependencies**
-
-   ```bash
-   cd client
-   npm install
-   ```
-
-### Development
-
-Run the client:
-
-**Terminal - Client**
+### Install & Run
 
 ```bash
-cd client
+npm install
 npm run dev
 ```
 
-The client will be available at `http://localhost:3000`
+App runs at `http://localhost:3000`.
 
 ### Production Build
 
-**Client**
-
 ```bash
-cd client
 npm run build
 npm start
 ```
 
-## Features Overview
-
-### Dashboard
-
-- View today's scheduled workout
-- See weekly lift overview
-- Track workout progress
-
-### Admin Panel
-
-- Create, edit, and delete lifts
-- Manage workout schedules
-- Configure supersets
-
-### Workout Tracking
-
-- Track individual lifts and supersets
-- Mobile-optimized workout views
-- Real-time workout updates
-
-### Real-time Functionality
-
-- WebSocket connection for live data updates
-- Instant synchronization across devices
-- Real-time workout modifications
-
-## Database
-
-This application uses Supabase for:
-
-- User authentication
-- Workout and lift data storage
-- Real-time subscriptions
-- Server-side data management
-
 ## Scripts
 
-### Client Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm start` - Start production server
-- `npm run lint` - Run ESLint
-
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+| Command | Description |
+|---|---|
+| `npm run dev` | Start development server |
+| `npm run build` | Build for production |
+| `npm start` | Start production server |
+| `npm run lint` | Run ESLint |
 
 ## License
 
-This project is private and proprietary.
-
-## Contact
-
-For questions or support, please open an issue in the repository.
+Private and proprietary.
