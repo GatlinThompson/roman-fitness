@@ -13,9 +13,10 @@ const makeId = () => crypto.randomUUID();
 
 type Props = {
   initialLifts?: any[];
+  isDemo?: boolean;
 };
 
-export default function LiftInputGroup({ initialLifts }: Props) {
+export default function LiftInputGroup({ initialLifts, isDemo }: Props) {
   const [removedLiftIds, setRemovedLiftIds] = useState<number[]>([]);
   const [lifts, setLifts] = useState<LiftRow[]>(() => {
     if (initialLifts && initialLifts.length > 0) {
@@ -74,7 +75,7 @@ export default function LiftInputGroup({ initialLifts }: Props) {
                     Lift {index + 1}
                   </h2>
                   <div>
-                    {lifts.length > 1 && (
+                    {!isDemo && lifts.length > 1 && (
                       <button type="button" onClick={() => removeLift(lift.id)}>
                         <div>
                           <Cross className="w-12 h-12 text-red-orange hover:text-red-800" />
@@ -83,33 +84,37 @@ export default function LiftInputGroup({ initialLifts }: Props) {
                     )}
                   </div>
                 </div>
-                <div className="flex flex-col gap-2 my-4">
-                  {index !== 0 && (
-                    <Button
-                      type="button"
-                      onClick={() => moveLift(index, index - 1)}
-                      disabled={index === 0}
-                    >
-                      Up
-                    </Button>
-                  )}
-                  {index !== lifts.length - 1 && (
-                    <Button
-                      type="button"
-                      onClick={() => moveLift(index, index + 1)}
-                      disabled={index === lifts.length - 1}
-                    >
-                      Down
-                    </Button>
-                  )}
-                </div>
-                <LiftInput sequence={index + 1} initialData={lift.data} />
+                {!isDemo && (
+                  <div className="flex flex-col gap-2 my-4">
+                    {index !== 0 && (
+                      <Button
+                        type="button"
+                        onClick={() => moveLift(index, index - 1)}
+                        disabled={index === 0}
+                      >
+                        Up
+                      </Button>
+                    )}
+                    {index !== lifts.length - 1 && (
+                      <Button
+                        type="button"
+                        onClick={() => moveLift(index, index + 1)}
+                        disabled={index === lifts.length - 1}
+                      >
+                        Down
+                      </Button>
+                    )}
+                  </div>
+                )}
+                <LiftInput sequence={index + 1} initialData={lift.data} isDemo={isDemo} />
               </div>
             </motion.div>
           ))}
-          <Button type="button" onClick={addLift} className="m-4">
-            Add Another Lift
-          </Button>
+          {!isDemo && (
+            <Button type="button" onClick={addLift} className="m-4">
+              Add Another Lift
+            </Button>
+          )}
         </motion.div>
       </AnimatePresence>
     </div>

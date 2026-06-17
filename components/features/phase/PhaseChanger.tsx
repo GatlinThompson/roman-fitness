@@ -11,11 +11,11 @@ export const fetchPhases = async () => {
   return data.phases;
 };
 
-export default function PhaseChanger({ phases }: { phases: PhaseInfo[] }) {
+export default function PhaseChanger({ phases, isDemo }: { phases: PhaseInfo[]; isDemo?: boolean }) {
   const { openModal } = useModal();
 
   const handleOpenPhaseChanger = async () => {
-    openModal("Manage Phases", <PhaseContainer phases={phases} />);
+    openModal("Manage Phases", <PhaseContainer phases={phases} isDemo={isDemo} />);
   };
 
   return (

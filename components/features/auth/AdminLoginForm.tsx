@@ -102,6 +102,12 @@ export default function AdminLoginForm() {
           {loading ? <Spinner className="w-6 h-6" /> : "Login"}
         </Button>
       </form>
+      <div className="mt-4 text-center">
+        <p className="text-light-gray text-sm mb-2">Just looking around?</p>
+        <Button to="/demo" bordered className="w-full">
+          Demo Login
+        </Button>
+      </div>
     </>
   );
 }

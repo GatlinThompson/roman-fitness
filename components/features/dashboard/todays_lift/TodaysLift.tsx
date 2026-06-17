@@ -16,6 +16,7 @@ import Spinner from "@/components/ui/Spinner";
 
 type TodaysLiftProps = {
   className?: string;
+  isDemo?: boolean;
 };
 
 /**
@@ -24,7 +25,7 @@ type TodaysLiftProps = {
  * @param className optional additional class names
  * @returns the today's lift component for the admin dashboard
  */
-export default function TodaysLift({ className }: TodaysLiftProps) {
+export default function TodaysLift({ className, isDemo }: TodaysLiftProps) {
   const [lifts, setLifts] = useState<(Lift | SuperSet)[]>([]);
   const [workoutId, setWorkoutId] = useState<string | number | undefined>(
     undefined,
@@ -64,14 +65,25 @@ export default function TodaysLift({ className }: TodaysLiftProps) {
         <div className="flex flex-col flex-1">
           {today.getDay() !== 0 && (
             <Button
-              to={`/lift/${workoutId ? workoutId + "/edit" : ""}`}
+              to={
+                isDemo
+                  ? workoutId
+                    ? `/lift/${workoutId}/edit?demo=true`
+                    : undefined
+                  : `/lift/${workoutId ? workoutId + "/edit" : ""}`
+              }
               className="text-right me-1 mb-1"
               roundedTop={true}
               bordered={true}
+              disabled={isDemo && !workoutId}
             >
               {!isLoading
                 ? lifts.length > 0
-                  ? "Edit Workout"
+                  ? isDemo
+                    ? "View Workout"
+                    : "Edit Workout"
+                  : isDemo
+                  ? "No Workout"
                   : "Create Workout"
                 : "Loading..."}
             </Button>

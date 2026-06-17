@@ -13,6 +13,7 @@ type WorkoutHeaderProps = {
   className?: string;
   showChangePhase?: boolean;
   location?: string;
+  isDemo?: boolean;
 };
 
 /**
@@ -24,6 +25,7 @@ export default async function WorkoutHeader({
   className,
   showChangePhase,
   location,
+  isDemo,
 }: WorkoutHeaderProps) {
   const phase: PhaseInfo | null = await getPhase();
 
@@ -31,7 +33,7 @@ export default async function WorkoutHeader({
 
   let phaseManagement: PhaseChangerInfo[] = [];
 
-  if (showChangePhase) {
+  if (showChangePhase || isDemo) {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/phases`,
     );
@@ -77,7 +79,7 @@ export default async function WorkoutHeader({
         </div>
       </div>
       {/* Change Phase Button */}
-      {showChangePhase && <PhaseChanger phases={phaseManagement} />}
+      {(showChangePhase || isDemo) && <PhaseChanger phases={phaseManagement} isDemo={isDemo} />}
     </section>
   );
 }

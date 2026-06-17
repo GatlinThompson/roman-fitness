@@ -11,6 +11,7 @@ type DailyLiftProps = {
     fullDate: string;
   };
   index?: number;
+  isDemo?: boolean;
 };
 
 const liftDays = [
@@ -24,7 +25,7 @@ const liftDays = [
   },
 ];
 
-export default function DailyLift({ day, index = 0 }: DailyLiftProps) {
+export default function DailyLift({ day, index = 0, isDemo }: DailyLiftProps) {
   const liftLink =
     day.hasWorkout && day.workoutId
       ? `/lift/${day.workoutId}/edit`
@@ -39,9 +40,21 @@ export default function DailyLift({ day, index = 0 }: DailyLiftProps) {
           <div className="text-2xl font-bold text-white">
             {day.exerciseCount + " Lifts" || "No Workout Made"}
           </div>
-          <Button bordered to={liftLink} className="mt-3 px-5 py-2 text-lg">
-            {day.hasWorkout ? "View Workout" : "Create Workout"}
-          </Button>
+          {(!isDemo || day.hasWorkout) && (
+            <Button
+              bordered
+              to={
+                isDemo && day.hasWorkout && day.workoutId
+                  ? `/lift/${day.workoutId}/edit?demo=true`
+                  : !isDemo
+                  ? liftLink
+                  : undefined
+              }
+              className="mt-3 px-5 py-2 text-lg"
+            >
+              {day.hasWorkout ? "View Workout" : "Create Workout"}
+            </Button>
+          )}
         </div>
         <div className="text-lg text-light-gray">
           {liftDays[0][day.dayName as keyof (typeof liftDays)[0]] || "Rest"} Day

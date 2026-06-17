@@ -21,9 +21,10 @@ type Props = {
   initialData?: {
     lift: LiftInputValue;
   };
+  isDemo?: boolean;
 };
 
-export default function LiftInput({ sequence, initialData }: Props) {
+export default function LiftInput({ sequence, initialData, isDemo }: Props) {
   const [liftObject, setLiftObject] = useState<LiftInputValue>(() => {
     if (initialData?.lift) {
       return {
@@ -89,6 +90,7 @@ export default function LiftInput({ sequence, initialData }: Props) {
           onChange={(e) => updateMain("exercise", e.target.value)}
           placeholder="Exercise Name"
           className="col-start-1 col-end-3"
+          disabled={isDemo}
         />
         <Input
           title="Reps"
@@ -96,6 +98,7 @@ export default function LiftInput({ sequence, initialData }: Props) {
           value={liftObject.reps}
           onChange={(e) => updateMain("reps", e.target.value)}
           placeholder="Reps"
+          disabled={isDemo}
         />
 
         <Input
@@ -104,6 +107,7 @@ export default function LiftInput({ sequence, initialData }: Props) {
           value={liftObject.tempo}
           onChange={(e) => updateMain("tempo", e.target.value)}
           placeholder="Tempo"
+          disabled={isDemo}
         />
       </div>
 
@@ -112,6 +116,7 @@ export default function LiftInput({ sequence, initialData }: Props) {
           OnChange={() => setSuperSetEnabled((prev) => !prev)}
           toggled={superSetEnabled}
           title="Superset"
+          disabled={isDemo}
         />
       </div>
 
@@ -135,6 +140,7 @@ export default function LiftInput({ sequence, initialData }: Props) {
                   onChange={(e) => updateSuper("exercise", e.target.value)}
                   placeholder="Exercise Name"
                   className="col-start-1 col-end-3"
+                  disabled={isDemo}
                 />
                 <Input
                   title="Superset Reps"
@@ -142,6 +148,7 @@ export default function LiftInput({ sequence, initialData }: Props) {
                   value={liftObject.superSet.reps}
                   onChange={(e) => updateSuper("reps", e.target.value)}
                   placeholder="Superset Reps"
+                  disabled={isDemo}
                 />
 
                 <Input
@@ -150,6 +157,7 @@ export default function LiftInput({ sequence, initialData }: Props) {
                   value={liftObject.superSet.tempo}
                   onChange={(e) => updateSuper("tempo", e.target.value)}
                   placeholder="Superset Tempo"
+                  disabled={isDemo}
                 />
               </div>
             </motion.div>

@@ -13,12 +13,14 @@ type Props = {
   workoutId?: number;
   initialDate?: string;
   initialLifts?: any[];
+  isDemo?: boolean;
 };
 
 export default function LiftForm({
   workoutId,
   initialDate,
   initialLifts,
+  isDemo,
 }: Props) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
@@ -65,19 +67,21 @@ export default function LiftForm({
       >
         <LiftDateInput initialDate={initialDate} />
 
-        <LiftInputGroup initialLifts={initialLifts} />
+        <LiftInputGroup initialLifts={initialLifts} isDemo={isDemo} />
 
-        <div className="mx-2 mb-10">
-          <Button type="submit" disabled={loading} className="">
-            {loading ? (
-              <Spinner className="w-6 h-6" />
-            ) : isEditing ? (
-              "Update Workout"
-            ) : (
-              "Create Workout"
-            )}
-          </Button>
-        </div>
+        {!isDemo && (
+          <div className="mx-2 mb-10">
+            <Button type="submit" disabled={loading} className="">
+              {loading ? (
+                <Spinner className="w-6 h-6" />
+              ) : isEditing ? (
+                "Update Workout"
+              ) : (
+                "Create Workout"
+              )}
+            </Button>
+          </div>
+        )}
       </form>
     </div>
   );

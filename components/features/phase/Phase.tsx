@@ -27,10 +27,12 @@ export default function Phase({
   phase,
   index,
   onUpdate,
+  isDemo,
 }: {
   phase: PhaseInfo;
   index: number;
   onUpdate: () => void;
+  isDemo?: boolean;
 }) {
   const extendWeek = async () => {
     const response = await fetch(`/api/phases/extend/${phase.id}`, {
@@ -77,7 +79,7 @@ export default function Phase({
           </span>
         </div>
       </div>
-      {index === 0 && (
+      {index === 0 && !isDemo && (
         <div className="flex flex-col md:flex-row gap-4">
           {lessThanAWeekLeft() && (
             <Button

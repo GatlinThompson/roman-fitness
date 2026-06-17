@@ -12,6 +12,7 @@ type InputProps = {
   error?: string;
   name?: boolean;
   className?: string;
+  disabled?: boolean;
 };
 
 export default function Input({
@@ -23,6 +24,7 @@ export default function Input({
   placeholder,
   error,
   className,
+  disabled,
 }: InputProps) {
   return (
     <div className={`grid grid-rows-2 w-full ${className} `}>
@@ -35,7 +37,8 @@ export default function Input({
         onChange={onChange}
         value={value}
         placeholder={placeholder}
-        className={`w-full glass-black rounded-lg py-2 px-3 text-white text-md font-montserrat ${styles["input-border"]}`}
+        disabled={disabled}
+        className={`w-full glass-black rounded-lg py-2 px-3 text-white text-md font-montserrat ${styles["input-border"]} ${disabled ? "opacity-60 cursor-not-allowed" : ""}`}
       />
       {error && <p className="text-red-500 text-sm">{error}</p>}
     </div>

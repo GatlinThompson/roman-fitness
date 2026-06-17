@@ -4,10 +4,13 @@ import { notFound } from "next/navigation";
 
 type Props = {
   params: Promise<{ id: string }>;
+  searchParams: Promise<{ demo?: string }>;
 };
 
-export default async function EditLiftPage({ params }: Props) {
+export default async function EditLiftPage({ params, searchParams }: Props) {
   const { id } = await params;
+  const { demo } = await searchParams;
+  const isDemo = demo === "true";
   const supabase = await createClient();
 
   // Fetch the workout and its lifts
@@ -75,12 +78,13 @@ export default async function EditLiftPage({ params }: Props) {
   return (
     <div className="max-w-3xl mx-auto">
       <h1 className="text-center font-bold my-6 font-montserrat text-4xl">
-        Edit Workout
+        {isDemo ? "View Workout" : "Edit Workout"}
       </h1>
       <LiftForm
         workoutId={workout.id}
         initialDate={workout.workout_date}
         initialLifts={liftsData}
+        isDemo={isDemo}
       />
     </div>
   );

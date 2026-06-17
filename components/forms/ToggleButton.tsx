@@ -4,12 +4,14 @@ type ToggleButtonProps = {
   toggled: boolean;
   title: string;
   OnChange: () => void;
+  disabled?: boolean;
 };
 
 export default function ToggleButton({
   toggled,
   OnChange,
   title,
+  disabled,
 }: ToggleButtonProps) {
   return (
     <div className="grid text-lg font-medium gap-1">
@@ -18,8 +20,9 @@ export default function ToggleButton({
         type="button"
         className={`w-[100px] h-[40px] rounded-3xl  ${
           toggled ? "cool-red" : "glass-black"
-        } ${styles["toggle-button"]} `}
-        onClick={OnChange}
+        } ${styles["toggle-button"]} ${disabled ? "opacity-60 cursor-not-allowed" : ""}`}
+        onClick={disabled ? undefined : OnChange}
+        disabled={disabled}
       >
         <div className="flex h-full text-white font-semibold p-0.5">
           <div

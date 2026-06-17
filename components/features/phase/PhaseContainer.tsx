@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { fetchPhases } from "./PhaseChanger";
 import Loading from "@/components/ui/loading/Loading";
 
-export default function PhaseContainer({ phases }: { phases: PhaseInfo[] }) {
+export default function PhaseContainer({ phases, isDemo = false }: { phases: PhaseInfo[]; isDemo?: boolean }) {
   const [phaseList, setPhases] = useState<PhaseInfo[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -33,7 +33,7 @@ export default function PhaseContainer({ phases }: { phases: PhaseInfo[] }) {
       <ul className="flex flex-col gap-3">
         {phaseList?.map((phase: PhaseInfo, index: number) => (
           <li key={phase.id}>
-            <Phase phase={phase} index={index} onUpdate={updatePhases} />
+            <Phase phase={phase} index={index} onUpdate={updatePhases} isDemo={isDemo} />
             {index < phaseList.length - 1 && <Divider />}
           </li>
         ))}

@@ -17,6 +17,7 @@ export function useRealtimeWorkout(): UseRealtimeWorkoutReturn {
   const [loading, setLoading] = useState(true);
   const isInitialLoadRef = useRef(true);
   const currentLiftIdsRef = useRef<Set<number>>(new Set());
+  const previousLiftsRef = useRef<(Lift | SuperSet)[]>([]);
 
   const supabase = useMemo(() => createClient(), []);
   const isFetchingRef = useRef(false);
@@ -95,23 +96,37 @@ export function useRealtimeWorkout(): UseRealtimeWorkoutReturn {
               }
             }) || [];
 
-          // Track all lift IDs in the current workout
-          const liftIds = new Set<number>();
-          data[0].workout_lifts?.forEach((item: any) => {
-            liftIds.add(item.lift.id);
-            if (item.lift.superset) {
-              liftIds.add(item.lift.superset.id);
-            }
-          });
-          currentLiftIdsRef.current = liftIds;
+          // Only update if we have data OR if it's the initial load AND no previous data exists
+          if (updatedLifts.length > 0) {
+            // Track all lift IDs in the current workout
+            const liftIds = new Set<number>();
+            data[0].workout_lifts?.forEach((item: any) => {
+              liftIds.add(item.lift.id);
+              if (item.lift.superset) {
+                liftIds.add(item.lift.superset.id);
+              }
+            });
+            currentLiftIdsRef.current = liftIds;
 
-          setWorkoutId(data[0].id);
-          setLifts(updatedLifts);
-        } else {
-          // No workout found for today
+            setWorkoutId(data[0].id);
+            setLifts(updatedLifts);
+            previousLiftsRef.current = updatedLifts;
+          } else if (
+            isInitialLoadRef.current &&
+            previousLiftsRef.current.length === 0
+          ) {
+            // Only clear on initial load when we have no previous data
+            setWorkoutId(data[0].id);
+            setLifts([]);
+            previousLiftsRef.current = [];
+          }
+          // If updatedLifts is empty but we have previous data, keep the previous data (don't update)
+        } else if (isInitialLoadRef.current) {
+          // Only clear data on initial load - keep old data during realtime updates
           setLifts([]);
           setWorkoutId(undefined);
           currentLiftIdsRef.current = new Set();
+          previousLiftsRef.current = [];
         }
 
         // Mark initial load as complete

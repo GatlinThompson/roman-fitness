@@ -9,6 +9,7 @@ import GlassContainer from "@/components/ui/glass_card/GlassContainer";
 
 type WeeklyLiftsProps = {
   className?: string;
+  isDemo?: boolean;
 };
 
 type DayLift = {
@@ -20,7 +21,7 @@ type DayLift = {
   fullDate: string; // For querying
 };
 
-export default function WeeklyLifts({ className }: WeeklyLiftsProps) {
+export default function WeeklyLifts({ className, isDemo }: WeeklyLiftsProps) {
   const [currentWeekStart, setCurrentWeekStart] = useState<Date>(
     getWeekStart(new Date()),
   );
@@ -147,7 +148,7 @@ export default function WeeklyLifts({ className }: WeeklyLiftsProps) {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-3 xl:gap-6  ">
           {weekDays.map((day, index) => (
-            <DailyLift key={day.fullDate} day={day} index={index} />
+            <DailyLift key={day.fullDate} day={day} index={index} isDemo={isDemo} />
           ))}
         </div>
       )}
