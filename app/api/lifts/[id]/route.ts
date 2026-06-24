@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
+import { checkIsAdmin } from "@/lib/supabase/utils/getUserRole";
 
 type LiftInput = {
   sequence: number;
@@ -76,6 +77,10 @@ type RouteContext = {
 };
 
 export async function PUT(request: NextRequest, context: RouteContext) {
+  if (!(await checkIsAdmin())) {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
+
   try {
     const { id } = await context.params;
     const body = await request.json();
@@ -296,6 +301,10 @@ export async function PUT(request: NextRequest, context: RouteContext) {
 }
 
 export async function DELETE(request: NextRequest, context: RouteContext) {
+  if (!(await checkIsAdmin())) {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
+
   try {
     const { id } = await context.params;
     const supabase = await createClient();

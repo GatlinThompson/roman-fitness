@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
+import { checkIsAdmin } from "@/lib/supabase/utils/getUserRole";
 
 type LiftInput = {
   sequence: number;
@@ -95,6 +96,10 @@ export async function GET() {
 }
 
 export async function POST(request: NextRequest) {
+  if (!(await checkIsAdmin())) {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
+
   try {
     const body = await request.json();
     const dateRaw = body?.date;

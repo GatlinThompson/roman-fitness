@@ -1,6 +1,8 @@
+import { redirect } from "next/navigation";
 import LiftForm from "@/components/forms/LiftForm";
 import { createClient } from "@/lib/supabase/server";
 import { notFound } from "next/navigation";
+import { checkIsAdmin } from "@/lib/supabase/utils/getUserRole";
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -11,6 +13,11 @@ export default async function EditLiftPage({ params, searchParams }: Props) {
   const { id } = await params;
   const { demo } = await searchParams;
   const isDemo = demo === "true";
+
+  if (!isDemo && !(await checkIsAdmin())) {
+    redirect("/dashboard");
+  }
+
   const supabase = await createClient();
 
   // Fetch the workout and its lifts

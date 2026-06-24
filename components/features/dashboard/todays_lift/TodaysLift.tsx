@@ -17,6 +17,7 @@ import Spinner from "@/components/ui/Spinner";
 type TodaysLiftProps = {
   className?: string;
   isDemo?: boolean;
+  isAdmin?: boolean;
 };
 
 /**
@@ -25,7 +26,7 @@ type TodaysLiftProps = {
  * @param className optional additional class names
  * @returns the today's lift component for the admin dashboard
  */
-export default function TodaysLift({ className, isDemo }: TodaysLiftProps) {
+export default function TodaysLift({ className, isDemo, isAdmin }: TodaysLiftProps) {
   const [lifts, setLifts] = useState<(Lift | SuperSet)[]>([]);
   const [workoutId, setWorkoutId] = useState<string | number | undefined>(
     undefined,
@@ -63,28 +64,32 @@ export default function TodaysLift({ className, isDemo }: TodaysLiftProps) {
         </GlassSubTitle>
 
         <div className="flex flex-col flex-1">
-          {today.getDay() !== 0 && (
+          {today.getDay() !== 0 && (isAdmin || isDemo || workoutId) && (
             <Button
               to={
                 isDemo
                   ? workoutId
                     ? `/lift/${workoutId}/edit?demo=true`
                     : undefined
-                  : `/lift/${workoutId ? workoutId + "/edit" : ""}`
+                  : isAdmin
+                  ? `/lift/${workoutId ? workoutId + "/edit" : ""}`
+                  : workoutId
+                  ? `/lift/${workoutId}/edit?demo=true`
+                  : undefined
               }
               className="text-right me-1 mb-1"
               roundedTop={true}
               bordered={true}
-              disabled={isDemo && !workoutId}
+              disabled={(isDemo || !isAdmin) && !workoutId}
             >
               {!isLoading
                 ? lifts.length > 0
-                  ? isDemo
-                    ? "View Workout"
-                    : "Edit Workout"
-                  : isDemo
-                  ? "No Workout"
-                  : "Create Workout"
+                  ? isAdmin && !isDemo
+                    ? "Edit Workout"
+                    : "View Workout"
+                  : isAdmin && !isDemo
+                  ? "Create Workout"
+                  : "No Workout"
                 : "Loading..."}
             </Button>
           )}

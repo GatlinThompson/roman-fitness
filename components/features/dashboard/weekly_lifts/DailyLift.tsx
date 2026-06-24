@@ -12,6 +12,7 @@ type DailyLiftProps = {
   };
   index?: number;
   isDemo?: boolean;
+  isAdmin?: boolean;
 };
 
 const liftDays = [
@@ -25,11 +26,18 @@ const liftDays = [
   },
 ];
 
-export default function DailyLift({ day, index = 0, isDemo }: DailyLiftProps) {
-  const liftLink =
+export default function DailyLift({ day, index = 0, isDemo, isAdmin }: DailyLiftProps) {
+  const adminLiftLink =
     day.hasWorkout && day.workoutId
       ? `/lift/${day.workoutId}/edit`
       : `/lift?date=${day.fullDate}`;
+
+  const viewLink =
+    day.hasWorkout && day.workoutId
+      ? `/lift/${day.workoutId}/edit?demo=true`
+      : undefined;
+
+  const showButton = isAdmin || isDemo ? (isDemo ? day.hasWorkout : true) : day.hasWorkout;
 
   return (
     <GlassContainer className={`p-4 flex items-center justify-center `}>
@@ -40,19 +48,23 @@ export default function DailyLift({ day, index = 0, isDemo }: DailyLiftProps) {
           <div className="text-2xl font-bold text-white">
             {day.exerciseCount + " Lifts" || "No Workout Made"}
           </div>
-          {(!isDemo || day.hasWorkout) && (
+          {showButton && (
             <Button
               bordered
               to={
-                isDemo && day.hasWorkout && day.workoutId
-                  ? `/lift/${day.workoutId}/edit?demo=true`
-                  : !isDemo
-                  ? liftLink
-                  : undefined
+                isDemo
+                  ? viewLink
+                  : isAdmin
+                  ? adminLiftLink
+                  : viewLink
               }
               className="mt-3 px-5 py-2 text-lg"
             >
-              {day.hasWorkout ? "View Workout" : "Create Workout"}
+              {day.hasWorkout
+                ? isAdmin && !isDemo
+                  ? "Edit Workout"
+                  : "View Workout"
+                : "Create Workout"}
             </Button>
           )}
         </div>
